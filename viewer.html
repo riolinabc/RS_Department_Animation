@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title id="page-title">3D Model Viewer</title> 
+    <style>
+       
+    
+    
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            position: relative; /* Allow absolute positioning for the button */
+        }
+        #back-button {
+            position: absolute; /* Position it relative to the header */
+            left: 20px; /* Left align it */
+            top: 50%; /* Center vertically */
+            transform: translateY(-50%); /* Adjust for height */
+            background-color: #0056b3; /* Darker blue background */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px; /* Rounded corners */
+            text-decoration: none; /* Remove underline */
+        }
+
+        #all {
+            display: flex;
+            flex-wrap: wrap;
+            height: calc(100vh - 100px); /* Adjust height to fit within the viewport */
+        }
+        #viewer-container {
+            flex: 1; /* Allow this to grow and fill available space */
+            background: #eee;
+            margin: 0;
+
+        }
+        #controls {
+            flex: 1; /* Allow this to grow and fill available space */
+            padding: 20px;
+            text-align: center;
+            background-color: white; /* Optional: for better separation */
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2); /* Optional: shadow effect */
+        }
+
+        @media (max-width: 900px) {
+            #viewer-container, #controls {
+                flex: 100%; /* Stack them on smaller screens */
+            }
+
+            #all{
+                height: 50%;
+            }
+        }
+        input[type="range"] {
+            margin: 0 10px;
+        }
+    </style>
+    <script type="importmap"> { 
+        "imports": { 
+            "three": "/three/build/three.module.js",
+            "three/addons/": "/three/examples/jsm/" 
+        } 
+    }    
+</script> 
+</head>
+<body>
+    <header>
+        <a id="back-button" href="index.html">Menu</a>
+        <h1 id="model-title">3D Model Viewer</h1>
+    </header>
+    <div id="all">
+        <div id="viewer-container"></div>
+        <div id="controls">
+            <button id="reset-camera">Reset Camera</button>
+            <br>
+            <br>
+            Animation Speed: 
+            <input type="range" id="speed-control" min="0.1" max="3" value="1" step="0.1">
+            <span id="speed-display">1x</span>
+            <br>
+            Ambient Light Intensity: 
+            <input type="range" id="ambient-light-control" min="0" max="5" value="1" step="0.1">
+            <span id="ambient-light-display">1</span>
+        </div>
+    </div>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
+    
+        let scene, camera, renderer, controls, mixer, clock;
+        let animationSpeed = 1;
+        let modelCenter = new THREE.Vector3();
+        let initialCameraPosition, initialCameraRotation;
+    
+        function init(modelFile, modelName) {
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xeeeeee);
+            
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 1.5, 5);
+
+            // Store the initial camera state
+            initialCameraPosition = camera.position.clone();
+            initialCameraRotation = camera.rotation.clone();
+
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.outputEncoding = THREE.sRGBEncoding;
+            renderer.setSize(window.innerWidth * 0.8, window.innerHeight * 0.8);
+            document.getElementById('viewer-container').appendChild(renderer.domElement);
+    
+            controls = new OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true; // Enable damping for smooth movement
+            controls.dampingFactor = 0.25; // Damping factor
+            controls.enableZoom = true; // Allow zooming
+            controls.enablePan = true; // Enable panning
+            controls.panSpeed = 1.0; // Set the pan speed
+    
+            const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+            scene.add(ambientLight);
+    
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+            directionalLight.position.set(5, 10, 7.5);
+            scene.add(directionalLight);
+    
+            clock = new THREE.Clock();
+    
+            const loader = new FBXLoader();
+            loader.load(modelFile, (object) => {
+                mixer = new THREE.AnimationMixer(object);
+                if (object.animations && object.animations.length > 0) {
+                    const action = mixer.clipAction(object.animations[0]);
+                    action.play();
+                }
+    
+                object.scale.set(0.01, 0.01, 0.01);
+                scene.add(object);
+            }, undefined, (error) => {
+                console.error('An error occurred while loading the FBX model:', error);
+            });
+    
+            window.addEventListener('resize', onWindowResize, false);
+            animate();
+    
+            document.getElementById('model-title').textContent = modelName;
+            document.title = modelName;
+    
+            document.getElementById('ambient-light-control').addEventListener('input', function () {
+                const intensity = parseFloat(this.value);
+                ambientLight.intensity = intensity;
+                document.getElementById('ambient-light-display').textContent = intensity.toFixed(1);
+            });
+        }
+    
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth * 0.8, window.innerHeight * 0.8);
+        }
+    
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            const delta = clock.getDelta();
+            if (mixer) mixer.update(delta * animationSpeed);
+            controls.update(); // Update controls for panning and rotation
+            renderer.render(scene, camera);
+        }
+    
+        document.addEventListener("DOMContentLoaded", function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const modelFile = urlParams.get('modelFile') || 'default.fbx';
+            const modelName = urlParams.get('modelName') || '3D Model Viewer';
+    
+            document.getElementById('speed-control').addEventListener('input', function () {
+                animationSpeed = parseFloat(this.value);
+                document.getElementById('speed-display').textContent = animationSpeed + "x";
+            });
+
+            document.getElementById('reset-camera').addEventListener('click', function() {
+                camera.position.copy(initialCameraPosition);
+                camera.rotation.copy(initialCameraRotation);
+                controls.target.copy(modelCenter); // Reset the controls target if needed
+                controls.update(); // Update controls to reflect the new position
+            });
+    
+            init(modelFile, modelName);
+        });
+    </script>
+</body>
+</html>

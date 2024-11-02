@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>3D Models Selection</title>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            position: relative; /* Allow absolute positioning for the button */
+        }
+        #back-button {
+            position: absolute; /* Position it relative to the header */
+            left: 20px; /* Left align it */
+            top: 50%; /* Center vertically */
+            transform: translateY(-50%); /* Adjust for height */
+            background-color: #0056b3; /* Darker blue background */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px; /* Rounded corners */
+            text-decoration: none; /* Remove underline */
+        }
+        main {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .item-list {
+            list-style-type: none;
+            padding: 0;
+            width: 100%;
+            max-width: 600px;
+        }
+        .item {
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 10px 0;
+            padding: 15px;
+            text-align: center;
+            transition: background 0.3s;
+        }
+        .item:hover {
+            background: #e7f1ff;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+    <header>
+
+        <a id="back-button" href="index.html">Menu</a>
+        <h1>Common Sports Injuries</h1>
+        <p>Select a model to view its animation</p>
+    </header>
+    <main>
+        <ul class="item-list">
+            <li class="item"><a href="viewer.html?modelFile=shoulder2.fbx&modelName=Shoulder%20Dislocation">Shoulder Dislocation</a></li>
+            <li class="item"><a href="viewer.html?modelFile=inversion2.fbx&modelName=Ankle%20Inversion">Ankle Inversion</a></li>
+            
+        </ul>
+    </main>
+</body>
+</html>
