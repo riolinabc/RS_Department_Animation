@@ -447,10 +447,80 @@ z-index: 1000;}
                 controls.target.copy(modelCenter);
                 controls.update();
             });
+            initTouchControls();
         
             init(modelFile, modelName);
         });
+        function initTouchControls() {
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let isDragging = false;
+    let previousDistance = null;
 
+    const viewerContainer = document.getElementById('viewer-container');
+
+    viewerContainer.addEventListener('touchstart', function(event) {
+        if (event.touches.length === 1) {
+            isDragging = true;
+            touchStartX = event.touches[0].clientX;
+            touchStartY = event.touches[0].clientY;
+        }
+    });
+
+    viewerContainer.addEventListener('touchmove', function(event) {
+        if (isDragging && event.touches.length === 1) {
+            const deltaX = event.touches[0].clientX - touchStartX;
+            const deltaY = event.touches[0].clientY - touchStartY;
+
+            // Rotate the model
+            controls.rotateLeft(-deltaX * 0.005); // Adjust sensitivity as needed
+            controls.rotateUp(deltaY * 0.005); // Adjust sensitivity as needed
+
+            touchStartX = event.touches[0].clientX;
+            touchStartY = event.touches[0].clientY;
+        } else if (event.touches.length === 2) {
+            const touch1 = event.touches[0];
+            const touch2 = event.touches[1];
+
+            const distX = touch2.clientX - touch1.clientX;
+            const distY = touch2.clientY - touch1.clientY;
+            const distance = Math.sqrt(distX * distX + distY * distY);
+
+            // Pinch to zoom
+            if (previousDistance) {
+                const deltaDistance = distance - previousDistance;
+                controls.dollyIn(Math.pow(0.95, deltaDistance * 0.1)); // Zoom in
+                controls.dollyOut(Math.pow(0.95, -deltaDistance * 0.1)); // Zoom out
+            }
+
+            previousDistance = distance; // Store the current distance for the next move
+
+            // Pan the model with two fingers
+            const midPointX = (touch1.clientX + touch2.clientX) / 2;
+            const midPointY = (touch1.clientY + touch2.clientY) / 2;
+
+            if (this.previousMidPoint) {
+                const deltaMidX = midPointX - this.previousMidPoint.x;
+                const deltaMidY = midPointY - this.previousMidPoint.y;
+
+                // Update controls to pan
+                controls.pan(new THREE.Vector3(deltaMidX * 0.01, -deltaMidY * 0.01, 0)); // Adjust sensitivity as needed
+            }
+
+            this.previousMidPoint = { x: midPointX, y: midPointY }; // Store the current midpoint for the next move
+        }
+    });
+
+    viewerContainer.addEventListener('touchend', function(event) {
+        if (event.touches.length < 2) {
+            previousDistance = null; // Reset distance tracking
+            this.previousMidPoint = null; // Reset midpoint tracking
+        }
+        if (event.touches.length === 0) {
+            isDragging = false; // Reset dragging state
+        }
+    });
+}
         document.getElementById('toggle-controls').addEventListener('click', function() {
     const controlsDiv = document.getElementById('controls');
     const closeButton = document.getElementById('close-controls');
