@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Models Selection</title>
+    <title>Joint Movement and Injury Simulation</title>
     <style>
+        
+       
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
             color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         header {
@@ -18,36 +23,71 @@
             color: white;
             padding: 10px 20px;
             text-align: center;
+            width: 100%;
         }
-        
+
         main {
-            padding: 20px;
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+            padding: 20px;
+            justify-content: center;
+            max-width: 1200px;
+            width: 100%;
         }
 
         .item-list {
-            list-style-type: none;
-            padding: 0;
-            width: 100%;
-            max-width: 600px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        
+        gap: 5px; /* This controls both row and column gaps */
+        /* Alternatively, specify separately: */
+        grid-row-gap: 20px; /* Reduced vertical gap between items */
+        list-style-type: none;
+        padding: 0;
+        margin-right: 20px;
+        width: 300px; /* Fixed width for the button area */
+        height: fit-content;
         }
 
-        .item {
-            background: white;
+        /* .item {
+            display: flex; 
+            align-items: center; 
+                        background: white;
             border: 1px solid #ccc;
             border-radius: 5px;
-            margin: 10px 0;
-            padding: 15px;
+            height: 40px; 
+    
+            
+           
             text-align: center;
             transition: background 0.3s;
-            position: relative; /* For positioning the link */
-        }
+            position: relative; 
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 5px;
+            cursor: pointer;
+            width: 200px;
+        } */
+        .item {
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center text vertically */
+    justify-content: center; /* Center text horizontally */
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 40px; /* Decreased height */
+    margin: 5px; /* Add margin for spacing */
+    padding: 5px;
+    text-align: center;
+    transition: background 0.3s;
+    cursor: pointer; /* Change cursor to pointer */
+}
 
         .item a {
             display: block; /* Make the link fill the item */
-            height: 100%; /* Ensure it covers the entire item */
+             /* Ensure it covers the entire item */
             width: 100%; /* Ensure it covers the entire item */
             text-decoration: none; /* Remove underline */
             color: inherit; /* Inherit text color */
@@ -58,7 +98,61 @@
         }
 
         .item:hover a {
-            color: #0056b3; /* Change link color on hover */
+            color: #0056b3;
+        }
+
+        .human-shape {
+            position: relative;
+            max-width: 400px;
+            height: 20%; /* Adjust the height as necessary */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .human-shape img {
+            max-width: 30%;
+            height: auto;
+        }
+
+        .overlay-button {
+            position: absolute;
+            background-color: rgba(0, 123, 255, 0.7);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            text-align: center;
+            transition: background 0.3s;
+        }
+
+        .overlay-button:hover {
+            background-color: rgba(0, 95, 200, 0.9);
+        }
+
+        /* Positioning buttons over different body parts */
+        .elbow { top: 30%; left: 60%; }
+        .ankle { top: 90%; left: 35%; }
+        .shoulder { top: 15%; left: 40%; }
+        .hips { top: 40%; left: 40%; }
+        .knee { top: 65%; left: 40%; }
+
+        @media (max-width: 800px) {
+            main {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .item-list {
+                margin-right: 0;
+                width: 100%;
+            }
+
+            .human-shape {
+                margin-top: 20px;
+                max-width: 90%; /* Responsive width on mobile */
+            }
         }
     </style>
 </head>
@@ -68,17 +162,21 @@
         <p>Select a model to view its animation</p>
     </header>
     <main>
-        <p style="font-size: smaller; text-align: center;">For mobile devices, one finger to rotate, two finger to pan, pinch to zoom in/out.
-            <br>For computer, left mouse button to rotate, right mouse button to pan, scroll middle mouse button to zoom.</p>
-        <ul class="item-list">
-            <li class="item">
-                <a href="viewer.html?modelFile=shoulder2.fbx&modelName=Shoulder%20Dislocation">Shoulder Dislocation</a>
-            </li>
-            <li class="item">
-                <a href="viewer.html?modelFile=inversion2.fbx&modelName=Ankle%20Inversion">Ankle Inversion</a>
-            </li>
-        </ul>
+        <div class="item-list">
+            <button class="item" onclick="location.href='menu.html?joint=shoulder'">Shoulder</button>
+            <button class="item" onclick="location.href='menu.html?joint=elbow'">Elbow</button>
+            <button class="item" onclick="location.href='menu.html?joint=hip'">Hip</button>
+            <button class="item" onclick="location.href='menu.html?joint=knee'">Knee</button>
+            <button class="item" onclick="location.href='menu.html?joint=ankle'">Ankle</button>
+        </div>
+        <div class="human-shape">
+            <img src="human_shape2.png" alt="Human Shape" />
+            <button class="overlay-button shoulder" onclick="location.href='menu.html?joint=shoulder'">Shoulder</button>
+            <button class="overlay-button elbow" onclick="location.href='menu.html?joint=elbow'">Elbow</button>
+            <button class="overlay-button hips" onclick="location.href='menu.html?joint=hip'">Hips</button>
+            <button class="overlay-button knee" onclick="location.href='menu.html?joint=knee'">Knee</button>
+            <button class="overlay-button ankle" onclick="location.href='menu.html?joint=ankle'">Ankle</button>
+        </div>
     </main>
-    
 </body>
 </html>
