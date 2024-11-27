@@ -381,7 +381,7 @@ z-index: 1000;}
                     document.getElementById('timeline').max = totalDuration;
                 }
                 // Fix the comparison operator
-                if (urlParams.get('joint') === 'ankle') {
+                if (urlParams.get('joint') === 'ankle' && urlParams.get('choice') === 'injury') {
                     object.scale.set(0.005, 0.005, 0.005);
                    
                     if(urlParams.get('modelName') === 'Inversion')
@@ -397,9 +397,9 @@ z-index: 1000;}
                        
                     }
                     if(urlParams.get('modelName') === 'Eversion Plantarflexion')
-                    { object.position.y = 0.3;
-                        object.position.x = -0.5;
-                        object.scale.set(0.0045, 0.0045, 0.0045);
+                    { object.position.y = 0.7;
+                     object.position.x = -0.5;
+                        // object.scale.set(0.001, 0.001, 0.001);
                         
                     }
 
@@ -416,6 +416,15 @@ z-index: 1000;}
                 } else {
                     object.scale.set(0.01, 0.01, 0.01);
                     object.position.y = -0.3; // Lower the model's y position
+                    if(urlParams.get('modelName') === 'ACL Injury')
+                    { 
+                        object.scale.set(0.007, 0.007, 0.007);
+                        object.position.z = -1;
+                        
+
+                        
+                        
+                    }
                 }
 
                   // Adjust the position of the model

@@ -20,11 +20,12 @@
             background-color: #007BFF;
             color: white;
             padding: 10px 20px;
-            padding-left: 60px;
+            padding-left: 60px; 
             text-align: center;
             width: 100%; 
             display: flex;
     align-items: center; /* Center vertically */
+    flex-wrap: wrap; /* Allow wrapping */
         }
 
        
@@ -35,9 +36,10 @@
             padding: 20px;
             width: 100%;
             max-width: 800px;
+            flex-wrap: wrap; /* Allow wrapping of columns */
         }
         .column {
-            flex: 1;
+            flex: 1 1 200px; ;
             margin: 10px;
             display: flex;
             flex-direction: column;
@@ -54,7 +56,9 @@
             border-radius: 5px;
             margin: 5px;
             cursor: pointer;
-            width: 200px;
+            width: 100%; /* Use full width for buttons */
+    max-width: 200px; /* Restrict max width */
+            
         }
         .menu button:hover {
             background-color: #0056b3;
@@ -114,13 +118,49 @@
                #back-button:hover {
                    background-color: #004494;
                }
-               .whole-timeline{display: flex; /* Use flexbox for alignment */
-           justify-content: center; /* Center buttons horizontally */
-          
-           padding: 10px; /* Optional padding */
-           background-color: #fff; /* Optional background color */
-           box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for separation */
-       z-index: 1000;}
+               /* Media Queries for Responsiveness */
+        @media (max-width: 600px) {
+            .menu {
+                flex-direction: column; /* Stack columns vertically on small screens */
+            }
+
+            .column {
+                flex: 1 1 auto; /* Allow columns to take full width */
+                margin: 10px 0; /* Margin between stacked columns */
+            }
+
+            .menu button {
+                width: 90%; /* Use most of the screen width for buttons */
+            }
+
+            
+}
+@media (max-width: 500px) {
+    header {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center items horizontally */
+    }
+
+    #back-button {
+        margin-bottom: 10px; /* Add some space between button and title */
+    }
+
+    #model-title {
+        font-size: 20px; /* Optional: Adjust title size for smaller screens */
+    }
+
+    header {
+            
+        padding: 10px 20px; 
+            
+        }
+
+
+    }
+   
+
+
+       
     </style>
 </head>
 <body>
@@ -173,8 +213,8 @@
                   
                 ],
                 injuries: [
-                    { name: "Valgus Overload", file: "/elbow/elbow2.fbx" },
-                    { name: "Elbow fully extended", file: "/elbow/elbow3.fbx" }
+                    { name: "Valgus Overload", file: "/elbow/v3_elbow2.fbx" },
+                    { name: "Elbow Fully Extended", file: "/elbow/v3_elbow3.fbx" }
                 ]
             },
             hip: {
@@ -199,7 +239,7 @@
                     { name: "Medial Rotation", file: "/knee/demo_medialrotation.fbx" }
                 ],
                 injuries: [
-                    { name: "ACL Injury", file: "/knee/acl_1.fbx" }
+                    { name: "ACL Injury", file: "/knee/v2_acl_1.fbx" }
                    
                 ]
             },
@@ -218,11 +258,11 @@
                     { name: "Eversion", file: "/ankle/eversion_v2.fbx" },
                     { name: "Eversion Abduction", file: "/ankle/eversion_abduction.fbx" },
                     { name: "Eversion Dorsiflexion", file: "/ankle/eversion_dorsiflexion.fbx"},
-                    { name: "Eversion Plantarflexion", file: "/ankle/v5_eversion_plantarflexion_withstair_v2.fbx" },
-                    { name: "Inversion", file: "/ankle/v7_inversion2.fbx" },
+                    { name: "Eversion Plantarflexion", file: "/ankle/eversion_plantarflexion.fbx" },
+                    { name: "Inversion", file: "/ankle/inversion_v2.fbx" },
                     { name: "Inversion Abduction Dorsiflexion", file: "/ankle/nov26_v4_inversion_abduction_dorsiflexion.fbx" },
                     { name: "Inversion Adduction Plantarflexion", file: "/ankle/inversion_adduction_plantarflexion.fbx" },
-                    { name: "Inversion Dorsiflexion", file: "/ankle/v3_inversion_dorsiflexion_with_rock.fbx" },
+                    { name: "Inversion Dorsiflexion", file: "/ankle/inversion_dorsiflexion.fbx" },
                 ]
             }
         };
@@ -242,7 +282,7 @@
                     const button = document.createElement('button');
                     button.innerText = option.name;
                     button.onclick = () => {
-                        location.href = `viewer.html?modelFile=${option.file}&joint=${jointType}&modelName=${option.name}`;
+                        location.href = `viewer.html?choice=movement&modelFile=${option.file}&joint=${jointType}&modelName=${option.name}`;
                     };
                     movementColumn.appendChild(button);
                 });
@@ -254,7 +294,7 @@
                     const button = document.createElement('button');
                     button.innerText = option.name;
                     button.onclick = () => {
-                        location.href = `viewer.html?modelFile=${option.file}&joint=${jointType}&modelName=${option.name}`;
+                        location.href = `viewer.html?choice=injury&modelFile=${option.file}&joint=${jointType}&modelName=${option.name}`;
                     };
                     injuriesColumn.appendChild(button);
                 });
