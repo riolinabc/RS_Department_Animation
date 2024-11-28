@@ -385,21 +385,34 @@ z-index: 1000;}
                     object.scale.set(0.005, 0.005, 0.005);
                    
                     if(urlParams.get('modelName') === 'Inversion')
-                    {object.position.z = 2;
+                    {object.position.z = 2.5;
                         object.position.x = 2;  
                     }
                     if(urlParams.get('modelName') === 'Eversion Abduction')
-                    {object.position.z = -0.5;
-                        object.position.x = 0.5;
-                        object.position.y = 0.2; // Lower the model's y position
-                        object.scale.set(0.0045, 0.0045, 0.0045);
+                    {object.position.z = -1.5;
+                       // object.position.x = 0.5;
+                       // object.position.y = 0.2; // Lower the model's y position
+                        object.rotation.y = -0.1;
+                       // object.scale.set(0.0045, 0.0045, 0.0045);
                                         
                        
                     }
+
+                    if(urlParams.get('modelName') === 'Eversion')
+                    { object.position.y = 0.3;
+                        object.rotation.y = 0.1;
+                        object.rotation.z = -0.025;
+                        
+                      
+                       
+                    }
                     if(urlParams.get('modelName') === 'Eversion Plantarflexion')
-                    { object.position.y = 0.7;
-                     object.position.x = -0.5;
-                        // object.scale.set(0.001, 0.001, 0.001);
+                     {
+                         object.position.y = 0.7;
+                    //     object.position.x = -0.5;
+                        object.rotation.y = 0.25;
+                     //object.position.z = -1;
+                      object.scale.set(0.005, 0.005, 0.005);
                         
                     }
 
@@ -419,12 +432,16 @@ z-index: 1000;}
                     if(urlParams.get('modelName') === 'ACL Injury')
                     { 
                         object.scale.set(0.007, 0.007, 0.007);
-                        object.position.z = -1;
-                        
-
-                        
+                        object.position.z = -1;                     
                         
                     }
+                    if(urlParams.get('modelName') === 'Posterior Dislocation')
+                    { 
+                       // object.scale.set(0.007, 0.007, 0.007);
+                        object.position.z = -3;                     
+                        
+                    }
+
                 }
 
                   // Adjust the position of the model
