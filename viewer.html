@@ -468,6 +468,7 @@ z-index: 1000;}
         let modelCenter = new THREE.Vector3();
         let isPlaying = false; // Track whether animation is playing
         let smaller=false;
+        let previousTime = 0; // Initialize previousTime
 
         
         window.onload = function() {
@@ -681,13 +682,22 @@ function setMarkerPositions() {
             label.style.transform = 'translateX(-50%)'; // Center the label under the marker
 
             // Add click event to the marker
-            marker.addEventListener('click', ((time) => () => {
+            marker.addEventListener('click', (() =>{
+                console.log(`Marker clicked: ${moment.label} at time: ${moment.time}`);
+
                 if (mixer) {
-                    mixer.setTime(time); // Use the time from the closure
-                    document.getElementById('timeline').value = time; // Update timeline value
-                    document.getElementById('timeline-value').textContent = `${time}%`; // Update displayed value
+                    // mixer.setTime(moment.time); // Use the time from the closure
+                    const timeInSeconds = (moment.time / 100) * totalDuration;
+                    mixer.setTime(timeInSeconds); // Use the time in seconds
+                    document.getElementById('timeline').value = moment.time; // Update timeline value
+                    document.getElementById('timeline-value').textContent = `${moment.time}%`; // Update displayed value
+                // // Start playback if desired
+                // if (!isPlaying) {
+                //         isPlaying = true; // Set to true to play
+                //     }
+                
                 }
-            })(moment.time)); // Immediately invoke the function with moment.time
+            })); // Immediately invoke the function with moment.time
 
             // Append marker and label to the container
             markersContainer.appendChild(marker);
@@ -726,32 +736,27 @@ timeline.addEventListener('input', function () {
         }
         
         
-
         function animate() {
     requestAnimationFrame(animate);
-    
+
     const delta = clock.getDelta();
-    if (mixer && mixer._actions.length > 0) { // Check if mixer is defined and has actions
-        const action = mixer._actions[0]; // Get the first action (assuming only one animation)
+    if (mixer && mixer._actions.length > 0) {
+        const action = mixer._actions[0];
         if (isPlaying) {
             mixer.update(delta * animationSpeed);
-            
-            // Get the current time of the action
-            const currentTime = action.time; // Use the action's time to get the current time
-            document.getElementById('timeline').value = currentTime;
 
-            // Calculate percentage for display
-            const percentage = (currentTime / totalDuration) * 100;
-            document.getElementById('timeline-value').textContent = `${Math.round(percentage)}%`;
-            
-// Call setMarkerPositions to update markers in real-time
-setMarkerPositions();
-
+            // Only update the UI if the current time has changed significantly
+            const currentTime = action.time;
+            if (currentTime !== previousTime) { // Store previousTime at a higher scope
+                document.getElementById('timeline').value = currentTime;
+                const percentage = (currentTime / totalDuration) * 100;
+                document.getElementById('timeline-value').textContent = `${Math.round(percentage)}%`;
+                previousTime = currentTime; // Update previousTime
+            }
 
             // Check if the animation has ended
             if (currentTime >= totalDuration) {
                 isPlaying = false; // Stop playing
-                // Reset the timeline to the start
                 document.getElementById('timeline').value = 0;
                 document.getElementById('timeline-value').textContent = '0%';
             }
@@ -759,8 +764,41 @@ setMarkerPositions();
     }
     controls.update();
     renderer.render(scene, camera);
-
 }
+//         function animate() {
+//     requestAnimationFrame(animate);
+    
+//     const delta = clock.getDelta();
+//     if (mixer && mixer._actions.length > 0) { // Check if mixer is defined and has actions
+//         const action = mixer._actions[0]; // Get the first action (assuming only one animation)
+//         if (isPlaying) {
+//             mixer.update(delta * animationSpeed);
+            
+//             // Get the current time of the action
+//             const currentTime = action.time; // Use the action's time to get the current time
+//             document.getElementById('timeline').value = currentTime;
+
+//             // Calculate percentage for display
+//             const percentage = (currentTime / totalDuration) * 100;
+//             document.getElementById('timeline-value').textContent = `${Math.round(percentage)}%`;
+            
+// // Call setMarkerPositions to update markers in real-time
+// setMarkerPositions();
+
+
+//             // Check if the animation has ended
+//             if (currentTime >= totalDuration) {
+//                 isPlaying = false; // Stop playing
+//                 // Reset the timeline to the start
+//                 document.getElementById('timeline').value = 0;
+//                 document.getElementById('timeline-value').textContent = '0%';
+//             }
+//         }
+//     }
+//     controls.update();
+//     renderer.render(scene, camera);
+
+// }
         
         document.addEventListener("DOMContentLoaded", function() {
             const urlParams = new URLSearchParams(window.location.search);
