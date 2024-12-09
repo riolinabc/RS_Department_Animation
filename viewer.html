@@ -656,15 +656,31 @@ let specialMoments = {
 let totaltimeline = 100; // Example total duration for calculation
 
 
+
+function hasSpecialMoments(bodyPart, name) {
+    if (!specialMoments[bodyPart]) {
+        console.warn(`No special moments found for body part: ${bodyPart}`);
+        return false;
+    }
+    if (!specialMoments[bodyPart][name]) {
+        console.warn(`No special moments found for model: ${name} in body part: ${bodyPart}`);
+        return false;
+    }
+    return true;
+}
+
+
 function setMarkerPositions() {
     const markersContainer = document.getElementById('markers-container');
-    let moments = specialMoments[urlParams.get('joint')][urlParams.get('modelName')];
+    
+    
     const timeline = document.getElementById('timeline');
     const timelineWidth = timeline.offsetWidth;
 
     markersContainer.innerHTML = ''; // Clear existing markers
 
-    if (moments) {
+    if (hasSpecialMoments(urlParams.get('joint'),urlParams.get('modelName') )){
+        let moments = specialMoments[urlParams.get('joint')][urlParams.get('modelName')];
         moments.forEach(moment => {
             // Create marker
             const marker = document.createElement('div');
@@ -791,6 +807,7 @@ timeline.addEventListener('input', function () {
             const urlParams = new URLSearchParams(window.location.search);
             const modelFile = urlParams.get('modelFile') || 'default.fbx'; // Replace with your model file
             const modelName = urlParams.get('modelName') || '3D Model Viewer';
+            
 
             document.getElementById('speed-control').addEventListener('input', function () {
                 animationSpeed = parseFloat(this.value);
