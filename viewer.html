@@ -22,9 +22,13 @@
 }
 .marker-label {
     position: absolute; /* Position it absolutely */
-    font-size: small; /* Adjust font size as needed */
-    color: black; /* Set text color */
+    font-size: x-small; /* Adjust font size as needed */
+    color: white; /* Set text color */
     text-align: center; /* Center the text */
+    transform: translateY(-5px);
+    background-color: #54aaff;
+    padding:5px;
+    border-radius: 5px;
 }
 
 .back-arrow {
@@ -279,7 +283,7 @@ z-index: 1000;}
             top: -10px; /* Adjust as needed to sit above the timeline */
             width: 10px; /* Width of marker */
             height: 10px; /* Height of marker */
-            background-color: red; /* Marker color */
+            background-color: #54aaff; /* Marker color */
             border-radius: 50%; /* Make them circular */
             pointer-events: auto; /* Allow interaction */
             z-index: 2; /* Ensure markers are above the timeline */
@@ -624,31 +628,33 @@ z-index: 1000;}
         }
 
 
+
         const urlParams = new URLSearchParams(window.location.search);
 let specialMoments = {
     shoulder: {
         "Anterior Dislocation": [
-            { time: 31, label: "Injury Start" },
-            { time: 51, label: "Injury End" }
+            { time: 31, label: "Injury<br>Start" },
+            { time: 51, label: "Injury<br>End" }
         ], 
         "Posterior Dislocation": [
-            { time: 77, label: "Injury Start" },
-            { time: 100, label: "Injury End" }
+            { time: 77, label: "Injury<br>Start" },
+            { time: 100, label: "Injury<br>End" }
         ]
     }, 
     elbow: {
         "Valgus Overload": [
-            { time: 40, label: "Injury Start" },
-            { time: 57, label: "Injury End" }
+            { time: 40, label: "Injury<br>Start" },
+            { time: 57, label: "Injury<br>End" }
         ], 
         "Elbow Fully Extended": [
-            { time: 59, label: "Injury Start" },
-            { time: 70, label: "Injury End" }
+            { time: 59, label: "Injury<br>Start" },
+            { time: 70, label: "Injury<br>End" }
         ]
     }
 };
 
 let totaltimeline = 100; // Example total duration for calculation
+
 
 function setMarkerPositions() {
     const markersContainer = document.getElementById('markers-container');
@@ -663,6 +669,7 @@ function setMarkerPositions() {
             // Create marker
             const marker = document.createElement('div');
             marker.className = 'marker';
+           
 
             // Calculate position based on total duration
             const positionPercentage = (moment.time / totaltimeline) * 100;
@@ -675,29 +682,39 @@ function setMarkerPositions() {
             // Create label for the marker
             const label = document.createElement('div');
             label.className = 'marker-label'; // Add a class for styling
-            label.textContent = moment.label; // Set the text to the marker's label
+            label.innerHTML = moment.label; // Set the text to the marker's label
             label.style.position = 'absolute'; // Position it absolutely
-            label.style.left = `${positionPixels}px`;
-            label.style.top = '15px'; // Adjust this value to position it below the marker
-            label.style.transform = 'translateX(-50%)'; // Center the label under the marker
+            label.style.left = `${positionPixels - 12}px`;
+            label.style.top = '-30px'; // Adjust this value to position it below the marker
+            label.style.zIndex = '10'; // Ensure label is on top
+            label.style.pointerEvents = 'auto'; // Ensure pointer events are enabled
+            marker.style.left = `${positionPixels}px`;
+            marker.title = moment.label;
+
+            // Function to update the mixer and timeline
+            const updateTimeline = () => {
+                const timeInSeconds = (moment.time / 100) * totalDuration; // Convert time to seconds
+                if (mixer) {
+                    mixer.setTime(timeInSeconds); // Update the mixer with the new time
+                    document.getElementById('timeline').value = (moment.time / 100) * totalDuration; // Update the timeline input value
+                    document.getElementById('timeline-value').textContent = `${moment.time}%`; // Update displayed percentage
+                } else {
+                    console.error('Mixer is not defined');
+                }
+            };
 
             // Add click event to the marker
-            marker.addEventListener('click', (() =>{
+            marker.addEventListener('click', () => {
                 console.log(`Marker clicked: ${moment.label} at time: ${moment.time}`);
+                updateTimeline(); // Call the update function
+            });
 
-                if (mixer) {
-                    // mixer.setTime(moment.time); // Use the time from the closure
-                    const timeInSeconds = (moment.time / 100) * totalDuration;
-                    mixer.setTime(timeInSeconds); // Use the time in seconds
-                    document.getElementById('timeline').value = moment.time; // Update timeline value
-                    document.getElementById('timeline-value').textContent = `${moment.time}%`; // Update displayed value
-                // // Start playback if desired
-                // if (!isPlaying) {
-                //         isPlaying = true; // Set to true to play
-                //     }
-                
-                }
-            })); // Immediately invoke the function with moment.time
+            // Add click event to the label
+            label.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent the click from bubbling up to the marker
+                console.log(`Label clicked: ${moment.label} at time: ${moment.time}`);
+                updateTimeline(); // Call the update function
+            });
 
             // Append marker and label to the container
             markersContainer.appendChild(marker);
@@ -712,8 +729,11 @@ function setMarkerPositions() {
 setMarkerPositions();
 
 // Add event listener for window resize
-window.addEventListener('resize', setMarkerPositions);
-
+// window.addEventListener('resize', setMarkerPositions);
+window.addEventListener('resize', () => {
+    setMarkerPositions(); // Call this to update markers
+    onWindowResize(); // Adjust the camera and renderer
+});
 
 const timeline = document.getElementById('timeline');
 timeline.addEventListener('input', function () {
@@ -765,40 +785,7 @@ timeline.addEventListener('input', function () {
     controls.update();
     renderer.render(scene, camera);
 }
-//         function animate() {
-//     requestAnimationFrame(animate);
-    
-//     const delta = clock.getDelta();
-//     if (mixer && mixer._actions.length > 0) { // Check if mixer is defined and has actions
-//         const action = mixer._actions[0]; // Get the first action (assuming only one animation)
-//         if (isPlaying) {
-//             mixer.update(delta * animationSpeed);
-            
-//             // Get the current time of the action
-//             const currentTime = action.time; // Use the action's time to get the current time
-//             document.getElementById('timeline').value = currentTime;
 
-//             // Calculate percentage for display
-//             const percentage = (currentTime / totalDuration) * 100;
-//             document.getElementById('timeline-value').textContent = `${Math.round(percentage)}%`;
-            
-// // Call setMarkerPositions to update markers in real-time
-// setMarkerPositions();
-
-
-//             // Check if the animation has ended
-//             if (currentTime >= totalDuration) {
-//                 isPlaying = false; // Stop playing
-//                 // Reset the timeline to the start
-//                 document.getElementById('timeline').value = 0;
-//                 document.getElementById('timeline-value').textContent = '0%';
-//             }
-//         }
-//     }
-//     controls.update();
-//     renderer.render(scene, camera);
-
-// }
         
         document.addEventListener("DOMContentLoaded", function() {
             const urlParams = new URLSearchParams(window.location.search);
