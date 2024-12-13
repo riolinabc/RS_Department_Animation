@@ -499,7 +499,7 @@ z-index: 1000;}
             controls.enableZoom = true;
             controls.enablePan = true;
             controls.panSpeed = 1.0;
-            //controls.minDistance = minDistance; // Set minimum zoom distance
+            controls.minDistance = minDistance; //zoom distance
             const ambientLight = new THREE.AmbientLight(0xffffff, 1);
             scene.add(ambientLight);
 
@@ -514,6 +514,7 @@ z-index: 1000;}
 
             loader.load(modelFile, (object) => {
                 mixer = new THREE.AnimationMixer(object);
+                 
                 if (object.animations && object.animations.length > 0) {
                     const action = mixer.clipAction(object.animations[0]);
                     action.play();
@@ -583,9 +584,26 @@ z-index: 1000;}
                     }
 
                 }
-
+                // Traverse the loaded object
+    object.traverse((child) => {
+        child.frustumCulled = false; // Disable frustum culling
+        if (child.isMesh) {
+            // Check if the mesh has one or multiple materials
+            if (Array.isArray(child.material)) {
+                // If there are multiple materials
+                child.material.forEach((material) => {
+                    material.depthTest = true; // Enable depth testing
+                    material.transparent = false; // Set to true if transparency is needed
+                });
+            } else {
+                // If there is a single material
+                child.material.depthTest = true; // Enable depth testing
+                child.material.transparent = false; // Set to true if transparency is needed
+            }
+        }
+    });
                   // Adjust the position of the model
-    
+                
                 scene.add(object);
             }, undefined, (error) => {
                 console.error('An error occurred while loading the FBX model:', error);
@@ -753,7 +771,7 @@ function setMarkerPositions() {
             label.innerHTML = moment.label; // Set the text to the marker's label
             label.style.position = 'absolute'; // Position it absolutely
             label.style.left = `${positionPixels- (positionPercentage / 100) * timelineWidth*0.005}px`;
-            label.style.top = '-30px'; // Adjust this value to position it below the marker
+            label.style.top = `${-marker.clientHeight-35}px`; // Adjust this value to position it below the marker
             label.style.zIndex = '10'; // Ensure label is on top
             label.style.pointerEvents = 'auto'; // Ensure pointer events are enabled
             marker.style.left = `${positionPixels-(positionPercentage / 100) * timelineWidth*0.005}px`;
@@ -774,6 +792,7 @@ function setMarkerPositions() {
             // Add click event to the marker
             marker.addEventListener('click', () => {
                 console.log(`Marker clicked: ${moment.label} at time: ${moment.time}`);
+                
                 updateTimeline(); // Call the update function
             });
 
@@ -781,6 +800,7 @@ function setMarkerPositions() {
             label.addEventListener('click', (e) => {
                 e.stopPropagation(); // Prevent the click from bubbling up to the marker
                 console.log(`Label clicked: ${moment.label} at time: ${moment.time}`);
+                console.log(`marker height: ${marker.clientHeight} at time: ${moment.time}`);
                 updateTimeline(); // Call the update function
             });
 
