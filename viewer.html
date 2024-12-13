@@ -31,6 +31,8 @@
     border-radius: 5px;
 }
 
+
+
 .back-arrow {
     display: inline-block;
     width: 0;
@@ -116,15 +118,7 @@ z-index: 1000;}
             width: 100%; */
             /* margin-top: 10px; */
         }
-        /* .control-button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin: 0 5px;
-        } */
+       
 
         .timeline-wrapper {
             display: flex;
@@ -173,24 +167,7 @@ z-index: 1000;}
     background-color: #eaf4ff; /* Darker background on hover */
 }
 
-/*.control-button {
-    background-color: #ffffff;
-    color: white;
-    border: none;
-    width: 15px; 
-    height: 15px; 
-    display: flex; 
-   
-    justify-content: center; 
-    cursor: pointer;
-    border-radius: 2px;
-    margin: 0 5px;
-}
-        .control-button:hover {
-            background-color: rgba(107, 107, 107, 0.395);
-        } 
 
-        */
 
         .all-control{
             display: flex; /* Use flexbox for alignment */
@@ -289,6 +266,19 @@ z-index: 1000;}
             z-index: 2; /* Ensure markers are above the timeline */
 }
 
+.marker-label {
+    transition: background-color 0.3s; /* Smooth transition */
+}
+
+
+
+.marker-label:hover {
+    background-color: #358be1; /* Change to the desired color */
+}
+
+.marker-label:hover {
+    background-color: #358be1; /* Change to the desired color */
+}
 
 
     @media (min-width: 1099px) {
@@ -745,7 +735,7 @@ function setMarkerPositions() {
 
             // Set marker position
             marker.style.left = `${positionPixels}px`;
-            marker.title = moment.label;
+           // marker.title = moment.label;
 
             // Create label for the marker
             const label = document.createElement('div');
@@ -757,7 +747,7 @@ function setMarkerPositions() {
             label.style.zIndex = '10'; // Ensure label is on top
             label.style.pointerEvents = 'auto'; // Ensure pointer events are enabled
             marker.style.left = `${positionPixels-(positionPercentage / 100) * timelineWidth*0.005}px`;
-            marker.title = moment.label;
+            //marker.title = moment.label;
 
             // Function to update the mixer and timeline
             const updateTimeline = () => {
