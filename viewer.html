@@ -118,7 +118,15 @@ z-index: 1000;}
             width: 100%; */
             /* margin-top: 10px; */
         }
-       
+        /* .control-button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 0 5px;
+        } */
 
         .timeline-wrapper {
             display: flex;
@@ -463,6 +471,7 @@ z-index: 1000;}
         let isPlaying = false; // Track whether animation is playing
         let smaller=false;
         let previousTime = 0; // Initialize previousTime
+        const minDistance = 0.5; // Minimum distance from the object
 
         
         window.onload = function() {
@@ -490,7 +499,7 @@ z-index: 1000;}
             controls.enableZoom = true;
             controls.enablePan = true;
             controls.panSpeed = 1.0;
-
+            //controls.minDistance = minDistance; // Set minimum zoom distance
             const ambientLight = new THREE.AmbientLight(0xffffff, 1);
             scene.add(ambientLight);
 
@@ -585,6 +594,7 @@ z-index: 1000;}
             window.addEventListener('resize', onWindowResize, false);
             animate();
             setMarkerPositions();
+            checkCameraDistance();
 
             document.getElementById('model-title').textContent = modelName;
             document.title = modelName;
@@ -628,7 +638,7 @@ let specialMoments = {
         ], 
         "Posterior Dislocation": [
             { time: 77, label: "Injury<br>Start" },
-            { time: 99, label: "Injury<br>End" }
+            { time: 100, label: "Injury<br>End" }
         ]
     }, 
     elbow: {
@@ -841,8 +851,33 @@ timeline.addEventListener('input', function () {
         }
     }
     controls.update();
+    checkCameraDistance();
     renderer.render(scene, camera);
+
+            // Prevent camera from going inside the object
+           
 }
+
+function checkCameraDistance() {
+    // Create a bounding box for the object
+    const box = new THREE.Box3().setFromObject(scene.children[0]); // Assuming the first child is your model
+
+    // Calculate the bounding sphere from the bounding box
+    const sphere = new THREE.Sphere();
+    box.getBoundingSphere(sphere); // Get the bounding sphere
+
+    // Calculate the distance from the camera to the sphere center
+    const distanceToCenter = camera.position.distanceTo(sphere.center);
+
+    // If the camera is too close, adjust its position
+    if (distanceToCenter < minDistance + sphere.radius) {
+        // Calculate the direction from the sphere center to the camera
+        const direction = camera.position.clone().sub(sphere.center).normalize();
+        // Move the camera to be minDistance + sphere.radius away from the sphere center
+        camera.position.copy(sphere.center).add(direction.multiplyScalar(minDistance + sphere.radius));
+    }
+}
+
 
         
         document.addEventListener("DOMContentLoaded", function() {
