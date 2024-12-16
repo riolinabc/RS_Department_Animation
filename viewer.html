@@ -771,7 +771,7 @@ function setMarkerPositions() {
             label.innerHTML = moment.label; // Set the text to the marker's label
             label.style.position = 'absolute'; // Position it absolutely
             label.style.left = `${positionPixels- (positionPercentage / 100) * timelineWidth*0.005}px`;
-            label.style.top = `${-marker.clientHeight-35}px`; // Adjust this value to position it below the marker
+            label.style.top = `${-marker.clientHeight-32}px`; // Adjust this value to position it below the marker
             label.style.zIndex = '10'; // Ensure label is on top
             label.style.pointerEvents = 'auto'; // Ensure pointer events are enabled
             marker.style.left = `${positionPixels-(positionPercentage / 100) * timelineWidth*0.005}px`;
