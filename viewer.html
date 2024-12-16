@@ -477,7 +477,17 @@ z-index: 1000;}
         
         window.onload = function() {
     setMarkerPositions(); // Call it to set initial positions on load
+    adjustRendererSize(); // Adjust size initially
+    window.addEventListener('resize', adjustRendererSize); // Add resize event listener
 };
+
+function adjustRendererSize() {
+    if (window.innerWidth <= 1100) {
+        renderer.setSize(window.innerWidth * 0.9, window.innerHeight * 0.9);
+    } else {
+        renderer.setSize(window.innerWidth * 0.8, window.innerHeight * 0.8);
+    }
+}
         function init(modelFile, modelName) {
             scene = new THREE.Scene();
             scene.background = new THREE.Color(0xeeeeee);
@@ -490,7 +500,7 @@ z-index: 1000;}
 
             renderer = new THREE.WebGLRenderer({ antialias: true });
             renderer.outputEncoding = THREE.sRGBEncoding;
-            renderer.setSize(window.innerWidth * 0.8, window.innerHeight * 0.8);
+            //renderer.setSize(window.innerWidth * 0.8, window.innerHeight * 0.8);
             //document.getElementById('viewer-container').appendChild(renderer.domElement);
             document.getElementById('viewer-container').appendChild(renderer.domElement);
 
