@@ -472,6 +472,7 @@ z-index: 1000;}
         let smaller=false;
         let previousTime = 0; // Initialize previousTime
         const minDistance = 0.5; // Minimum distance from the object
+        const maxDistance=5;
 
         
         window.onload = function() {
@@ -500,6 +501,7 @@ z-index: 1000;}
             controls.enablePan = true;
             controls.panSpeed = 1.0;
             controls.minDistance = minDistance; //zoom distance
+            controls.maxDistance = maxDistance; //zoom distance
             const ambientLight = new THREE.AmbientLight(0xffffff, 1);
             scene.add(ambientLight);
 
@@ -840,7 +842,8 @@ timeline.addEventListener('input', function () {
         function onWindowResize() {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth * 0.8, window.innerHeight * 0.8);
+            renderer.setSize(window.innerWidth * 0.9, window.innerHeight * 0.9);
+            renderer.setPixelRatio(window.devicePixelRatio);
         }
         
         
@@ -872,6 +875,7 @@ timeline.addEventListener('input', function () {
     }
     controls.update();
     checkCameraDistance();
+   
     renderer.render(scene, camera);
 
             // Prevent camera from going inside the object
