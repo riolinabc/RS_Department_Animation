@@ -484,8 +484,10 @@ z-index: 1000;}
 function adjustRendererSize() {
     if (window.innerWidth <= 1100) {
         renderer.setSize(window.innerWidth * 0.9, window.innerHeight * 0.9);
+        setMarkerPositions();
     } else {
         renderer.setSize(window.innerWidth * 0.8, window.innerHeight * 0.8);
+        setMarkerPositions();
     }
 }
         function init(modelFile, modelName) {
@@ -534,12 +536,15 @@ function adjustRendererSize() {
                     document.getElementById('timeline').max = totalDuration;
                 }
                 // Fix the comparison operator
+                
                 if (urlParams.get('joint') === 'ankle' && urlParams.get('choice') === 'injury') {
                     object.scale.set(0.005, 0.005, 0.005);
                    
                     if(urlParams.get('modelName') === 'Inversion')
                     {object.position.z = 2.5;
                         object.position.x = 2;  
+                      
+                       
                     }
                     if(urlParams.get('modelName') === 'Eversion Abduction')
                     {object.position.z = -1.5;
@@ -596,6 +601,13 @@ function adjustRendererSize() {
                     }
 
                 }
+
+                if (urlParams.get('joint') === 'ankle' && urlParams.get('choice') === 'movement') {
+                    object.rotation.y =0.6;
+                    object.position.z = 0.8;
+                    object.position.y = 0.3;
+                    console.log('Position after setting:', object.position); // Debugging line
+                  }
                 // Traverse the loaded object
     object.traverse((child) => {
         child.frustumCulled = false; // Disable frustum culling
@@ -739,12 +751,12 @@ let totaltimeline = 100; // Example total duration for calculation
 
 
 
-function hasSpecialMoments(bodyPart, name) {
-    if (!specialMoments[bodyPart]) {
+function hasSpecialMoments(bodyPart, name, choice) {
+    if (!specialMoments[bodyPart] || choice=="movement") {
         console.warn(`No special moments found for body part: ${bodyPart}`);
         return false;
     }
-    if (!specialMoments[bodyPart][name]) {
+    if (!specialMoments[bodyPart][name]||choice=="movement") {
         console.warn(`No special moments found for model: ${name} in body part: ${bodyPart}`);
         return false;
     }
@@ -761,7 +773,7 @@ function setMarkerPositions() {
 
     markersContainer.innerHTML = ''; // Clear existing markers
 
-    if (hasSpecialMoments(urlParams.get('joint'),urlParams.get('modelName') )){
+    if (hasSpecialMoments(urlParams.get('joint'),urlParams.get('modelName'), urlParams.get('choice') )){
         let moments = specialMoments[urlParams.get('joint')][urlParams.get('modelName')];
         moments.forEach(moment => {
             // Create marker
