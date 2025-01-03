@@ -53,6 +53,13 @@ function adjustRendererSize() {
             camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
             camera.position.set(0, 0.5, 3);
 
+             // Set the camera's near and far clipping planes
+             camera.near = 0.001; // Set to a small value
+             camera.far = 1000; // Set far value as needed
+ 
+              // Update the camera's projection matrix to apply the changes
+              camera.updateProjectionMatrix();
+
             initialCameraPosition = camera.position.clone();
             initialCameraRotation = camera.rotation.clone();
 
@@ -61,6 +68,8 @@ function adjustRendererSize() {
             //renderer.setSize(window.innerWidth * 0.8, window.innerHeight * 0.8);
             //document.getElementById('viewer-container').appendChild(renderer.domElement);
             document.getElementById('viewer-container').appendChild(renderer.domElement);
+
+           
 
             controls = new OrbitControls(camera, renderer.domElement);
             controls.enableDamping = true;
@@ -178,11 +187,15 @@ function adjustRendererSize() {
                 child.material.forEach((material) => {
                     material.depthTest = true; // Enable depth testing
                     material.transparent = false; // Set to true if transparency is needed
+                    child.frustumCulled = false; 
+                   material.side = THREE.DoubleSide; // Use double-sided rendering
                 });
             } else {
                 // If there is a single material
                 child.material.depthTest = true; // Enable depth testing
                 child.material.transparent = false; // Set to true if transparency is needed
+                child.frustumCulled = false; 
+                child.material.side = THREE.DoubleSide; // Use double-sided rendering
             }
         }
     });
