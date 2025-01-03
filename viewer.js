@@ -22,10 +22,9 @@ window.goBack = function() {
         let isPlaying = false; // Track whether animation is playing
         let smaller=false;
         let previousTime = 0; // Initialize previousTime
-        const minDistance = 0.5; // Minimum distance from the object
+        const minDistance = 0.1; // Minimum distance from the object
         const maxDistance=5;
 
-        
         window.onload = function() {
     setMarkerPositions(); // Call it to set initial positions on load
     adjustRendererSize(); // Adjust size initially
@@ -78,7 +77,7 @@ function adjustRendererSize() {
             controls.enablePan = true;
             controls.panSpeed = 1.0;
             controls.minDistance = minDistance; //zoom distance
-            controls.maxDistance = maxDistance; //zoom distance
+           controls.maxDistance = maxDistance; //zoom distance
             const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
             scene.add(ambientLight);
 
