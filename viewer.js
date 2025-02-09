@@ -78,6 +78,13 @@ function adjustRendererSize() {
             controls.panSpeed = 1.0;
             controls.minDistance = minDistance; //zoom distance
            controls.maxDistance = maxDistance; //zoom distance
+           // Allow 450-degree horizontal rotation
+// Allow full vertical rotation
+controls.minPolarAngle = -Math.PI*2; // Looking straight up
+controls.maxPolarAngle = Math.PI*3; // Looking straight down
+
+controls.minAzimuthAngle = -Infinity; // Rotate left
+controls.maxAzimuthAngle = Infinity; // Rotate right
             const ambientLight = new THREE.AmbientLight(0xffffff, 1.5);
             scene.add(ambientLight);
 
@@ -171,9 +178,12 @@ function adjustRendererSize() {
                 }
 
                 if (urlParams.get('joint') === 'ankle' && urlParams.get('choice') === 'movement') {
-                    object.rotation.y =0.6;
-                    object.position.z = 0.8;
-                    object.position.y = 0.3;
+                    object.rotation.y =0.3;
+                    object.rotation.x =0.3;
+                    object.scale.set(0.015, 0.015, 0.015);
+                    // object.rotation.y =0.6;
+                    // object.position.z = 0.5;
+                    // object.position.y = 0.2;
                     console.log('Position after setting:', object.position); // Debugging line
                   }
                 // Traverse the loaded object
