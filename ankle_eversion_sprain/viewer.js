@@ -22,6 +22,7 @@ const joint='ankle';
 const choice='injury';
 
         window.onload = function() {
+            init(modelFile, modelName); // Initialize with hardcoded values
     setMarkerPositions(); // Call it to set initial positions on load
     adjustRendererSize(); // Adjust size initially
     window.addEventListener('resize', adjustRendererSize); // Add resize event listener
@@ -442,8 +443,8 @@ function checkCameraDistance() {
         
         document.addEventListener("DOMContentLoaded", function() {
             const urlParams = new URLSearchParams(window.location.search);
-            const modelFile = modelFile || 'default.fbx'; // Replace with your model file
-            const modelName = modelName|| '3D Model Viewer';
+            // const modelFile = modelFile || 'default.fbx'; // Replace with your model file
+            // const modelName = modelName|| '3D Model Viewer';
             
 
             document.getElementById('speed-control').addEventListener('input', function () {
