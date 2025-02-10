@@ -294,8 +294,8 @@ let specialMoments = {
 
     ankle: {
         "Eversion": [
-            { time: 61, label: "Injury<br>Start" },
-            { time: 74, label: "Injury<br>End" }
+            { time: 65, label: "Injury<br>Start" },
+            { time: 77, label: "Injury<br>End" }
         ], 
         "Eversion Abduction": [
             { time: 64, label: "Injury<br>Start" },
@@ -313,8 +313,8 @@ let specialMoments = {
         ],
 
         "Inversion": [
-            { time: 61, label: "Injury<br>Start" },
-            { time: 82, label: "Injury<br>End" }
+            { time: 74, label: "Injury<br>Start" },
+            { time: 85, label: "Injury<br>End" }
         ],
 
         "Inversion Abduction Dorsiflexion": [
