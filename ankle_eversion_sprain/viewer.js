@@ -18,8 +18,8 @@
         // Hardcoded values
 const modelFile = '../ankle/sandal/eversion3_sandal.fbx';
 const modelName = 'Eversion';
-const joint=ankle;
-const choice=injury;
+const joint='ankle';
+const choice='injury';
 
         window.onload = function() {
     setMarkerPositions(); // Call it to set initial positions on load
