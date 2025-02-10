@@ -17,7 +17,7 @@
 
         // Hardcoded values
 const modelFile = '../ankle/sandal/inversion3_sandal.fbx';
-const modelName = 'Iversion';
+const modelName = 'Inversion';
 const joint='ankle';
 const choice='injury';
 
