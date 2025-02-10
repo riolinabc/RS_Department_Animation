@@ -22,7 +22,7 @@ const joint='ankle';
 const choice='injury';
 
         window.onload = function() {
-            init(modelFile, modelName); // Initialize with hardcoded values
+           // init(modelFile, modelName); // Initialize with hardcoded values
     setMarkerPositions(); // Call it to set initial positions on load
     adjustRendererSize(); // Adjust size initially
     window.addEventListener('resize', adjustRendererSize); // Add resize event listener
@@ -460,7 +460,7 @@ function checkCameraDistance() {
             });
             initTouchControls();
         
-            init(modelFile, modelName);
+           init(modelFile, modelName);
         });
         function initTouchControls() {
     let touchStartX = 0;
