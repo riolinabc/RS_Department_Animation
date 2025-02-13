@@ -181,12 +181,23 @@ controls.maxAzimuthAngle = Infinity; // Rotate right
                 }
 
                 if (urlParams.get('joint') === 'ankle' && urlParams.get('choice') === 'movement') {
-                    object.rotation.y =0.3;
-                    object.rotation.x =0.3;
-                    object.position.z = 0.3;
+                    if(urlParams.get('modelName') === 'Plantarflexion'||urlParams.get('modelName') === 'Dorsiflexion'){
+                        object.rotation.y =1.5;
+                        object.rotation.x =0;
+                        object.position.y= 0.2;
+                        object.position.z = 1.1;
+                    
+
+                    }
+                    else{
+                    object.rotation.y =0;
+                    object.rotation.x =1.7;
+                    object.position.z = -0.2;
+                    object.position.y= 0.2;
                     object.scale.set(0.015, 0.015, 0.015);
+                    }
                     // object.rotation.y =0.6;
-                     object.position.z = 0.2;
+                  
                     // object.position.y = 0.2;
                     console.log('Position after setting:', object.position); // Debugging line
                   }

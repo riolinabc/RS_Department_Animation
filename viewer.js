@@ -15,7 +15,7 @@ window.goBack = function() {
         import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
 
         let scene, camera, renderer, controls, mixer, clock;
-        let animationSpeed = 0.5;
+        let animationSpeed=0.3;
         let initialCameraPosition, initialCameraRotation;
         let totalDuration = 1; // Store total duration of the animation
         let modelCenter = new THREE.Vector3();
@@ -181,12 +181,23 @@ controls.maxAzimuthAngle = Infinity; // Rotate right
                 }
 
                 if (urlParams.get('joint') === 'ankle' && urlParams.get('choice') === 'movement') {
-                    object.rotation.y =0.3;
-                    object.rotation.x =0.3;
-                    object.position.z = 0.3;
+                    if(urlParams.get('modelName') === 'Plantarflexion'||urlParams.get('modelName') === 'Dorsiflexion'){
+                        object.rotation.y =1.5;
+                        object.rotation.x =0;
+                        object.position.y= 0.2;
+                        object.position.z = 1.1;
+                    
+
+                    }
+                    else{
+                    object.rotation.y =0;
+                    object.rotation.x =1.7;
+                    object.position.z = -0.2;
+                    object.position.y= 0.2;
                     object.scale.set(0.015, 0.015, 0.015);
+                    }
                     // object.rotation.y =0.6;
-                     object.position.z = 0.2;
+                  
                     // object.position.y = 0.2;
                     console.log('Position after setting:', object.position); // Debugging line
                   }
@@ -223,9 +234,23 @@ controls.maxAzimuthAngle = Infinity; // Rotate right
             animate();
             setMarkerPositions();
             checkCameraDistance();
-
-            document.getElementById('model-title').textContent = modelName;
-            document.title = modelName;
+//update document title, aniamtion speed, ui
+            if (modelName === "Eversion") {
+                document.title = "Injury 1";
+                animationSpeed = 0.3; 
+                document.getElementById('speed-control').value = animationSpeed; // Update slider value
+                document.getElementById('speed-display').textContent = animationSpeed + "x"; // Update display
+            } else if (modelName === "Inversion") {
+                document.title = "Injury 2";
+                animationSpeed = 0.3; // Set to 0.3 for Injury 2
+                document.getElementById('speed-control').value = animationSpeed; // Update slider value
+                document.getElementById('speed-display').textContent = animationSpeed + "x"; // Update display
+            } else {
+                document.title = modelName;
+                animationSpeed = 0.5; // Default value for other models
+                document.getElementById('speed-control').value = animationSpeed; // Update slider value
+                document.getElementById('speed-display').textContent = animationSpeed + "x"; // Update display
+            }
 
             document.getElementById('ambient-light-control').addEventListener('input', function () {
                 const intensity = parseFloat(this.value);
@@ -519,7 +544,18 @@ function checkCameraDistance() {
         document.addEventListener("DOMContentLoaded", function() {
             const urlParams = new URLSearchParams(window.location.search);
             const modelFile = urlParams.get('modelFile') || 'default.fbx'; // Replace with your model file
-            const modelName = urlParams.get('modelName') || '3D Model Viewer';
+            const modelName=urlParams.get('modelName') ; // Declare modelName in a broader scope
+
+//model header/title
+
+
+            if (urlParams.get('modelName') === "Eversion") {
+                document.getElementById('model-title').textContent= "Injury 1"|| '3D Model Viewer'; // Assign directly to modelName
+            } else if (urlParams.get('modelName') === "Inversion") {
+                document.getElementById('model-title').textContent = "Injury 2"|| '3D Model Viewer';
+            } else {
+                document.getElementById('model-title').textContent = modelName || '3D Model Viewer'; // Assign directly to modelName
+            }
             
 
             document.getElementById('speed-control').addEventListener('input', function () {

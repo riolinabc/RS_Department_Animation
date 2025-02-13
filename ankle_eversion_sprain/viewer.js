@@ -149,8 +149,29 @@ controls.maxAzimuthAngle = Infinity; // Rotate right
             setMarkerPositions();
             checkCameraDistance();
 
-            document.getElementById('model-title').textContent = modelName;
-            document.title = modelName;
+//update document title, aniamtion speed, ui
+if (modelName === "Eversion") {
+    document.title = "Injury 1";
+    animationSpeed = 0.3; 
+    document.getElementById('speed-control').value = animationSpeed; // Update slider value
+    document.getElementById('speed-display').textContent = animationSpeed + "x"; // Update display
+} else if (modelName === "Inversion") {
+    document.title = "Injury 2";
+    animationSpeed = 0.3; // Set to 0.3 for Injury 2
+    document.getElementById('speed-control').value = animationSpeed; // Update slider value
+    document.getElementById('speed-display').textContent = animationSpeed + "x"; // Update display
+} else {
+    document.title = modelName;
+    animationSpeed = 0.5; // Default value for other models
+    document.getElementById('speed-control').value = animationSpeed; // Update slider value
+    document.getElementById('speed-display').textContent = animationSpeed + "x"; // Update display
+}
+
+document.getElementById('ambient-light-control').addEventListener('input', function () {
+    const intensity = parseFloat(this.value);
+    ambientLight.intensity = intensity;
+    document.getElementById('ambient-light-display').textContent = intensity.toFixed(1);
+});
 
             document.getElementById('ambient-light-control').addEventListener('input', function () {
                 const intensity = parseFloat(this.value);
@@ -445,7 +466,15 @@ function checkCameraDistance() {
             const urlParams = new URLSearchParams(window.location.search);
             // const modelFile = modelFile || 'default.fbx'; // Replace with your model file
             // const modelName = modelName|| '3D Model Viewer';
-            
+
+            //model header/title
+
+
+            if (modelName=== "Eversion") {
+                document.getElementById('model-title').textContent= "Injury 1"|| '3D Model Viewer'; // Assign directly to modelName
+            } else if (modelName=== "Inversion") {
+                document.getElementById('model-title').textContent = "Injury 2"|| '3D Model Viewer';
+            }
 
             document.getElementById('speed-control').addEventListener('input', function () {
                 animationSpeed = parseFloat(this.value);
