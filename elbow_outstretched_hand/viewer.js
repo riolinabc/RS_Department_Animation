@@ -134,11 +134,8 @@ controls.maxAzimuthAngle = Infinity; // Rotate right
         }
     });
                   // Adjust the position of the model
-                //   object.scale.set(0.005, 0.005, 0.005);
-                //   object.position.y = 0.3;
-                //                           object.rotation.y = 0.1;
-                //                           object.rotation.z = -0.025;
-                                          
+                  object.scale.set(0.01, 0.01, 0.01);
+                  object.position.y = -0.3; // Lower the model's y position                      
                 scene.add(object);
             }, undefined, (error) => {
                 console.error('An error occurred while loading the FBX model:', error);
