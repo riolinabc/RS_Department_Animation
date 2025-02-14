@@ -15,7 +15,7 @@ window.goBack = function() {
         import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
 
         let scene, camera, renderer, controls, mixer, clock;
-        let animationSpeed=0.3;
+        let animationSpeed=0.5;
         let initialCameraPosition, initialCameraRotation;
         let totalDuration = 1; // Store total duration of the animation
         let modelCenter = new THREE.Vector3();
@@ -245,7 +245,14 @@ controls.maxAzimuthAngle = Infinity; // Rotate right
                 animationSpeed = 0.3; // Set to 0.3 for Injury 2
                 document.getElementById('speed-control').value = animationSpeed; // Update slider value
                 document.getElementById('speed-display').textContent = animationSpeed + "x"; // Update display
-            } else {
+            } 
+            else if (modelName === "Elbow Fully Extended") {
+                document.title = "Outstretched Hand";
+                document.getElementById('speed-control').value = animationSpeed; // Update slider value
+                document.getElementById('speed-display').textContent = animationSpeed + "x"; // Update display
+            }
+            
+            else {
                 document.title = modelName;
                 animationSpeed = 0.5; // Default value for other models
                 document.getElementById('speed-control').value = animationSpeed; // Update slider value
@@ -553,7 +560,12 @@ function checkCameraDistance() {
                 document.getElementById('model-title').textContent= "Injury 1"|| '3D Model Viewer'; // Assign directly to modelName
             } else if (urlParams.get('modelName') === "Inversion") {
                 document.getElementById('model-title').textContent = "Injury 2"|| '3D Model Viewer';
-            } else {
+            } else  if (modelName=== "Elbow Fully Extended") {
+                document.getElementById('model-title').textContent= "Outstretched Hand"|| '3D Model Viewer'; // Assign directly to modelName
+            } 
+            else           
+            
+            {
                 document.getElementById('model-title').textContent = modelName || '3D Model Viewer'; // Assign directly to modelName
             }
             

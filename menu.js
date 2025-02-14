@@ -115,7 +115,11 @@
             if (options[jointType].movement) {
                 options[jointType].movement.forEach(option => {
                     const button = document.createElement('button');
+
+
+                    //button text
                     button.innerText = option.name;
+                    
                     button.onclick = () => {
                         location.href = `viewer.html?choice=movement&modelFile=${option.file}&joint=${jointType}&modelName=${option.name}`;
                     };
@@ -127,7 +131,13 @@
             if (options[jointType].injuries) {
                 options[jointType].injuries.forEach(option => {
                     const button = document.createElement('button');
-                    button.innerText = option.name;
+                       //button text
+                    if (option.name== "Elbow Fully Extended"){
+                        button.innerText = "Outstretched Hand";
+
+                    }
+                    else{ button.innerText = option.name;}
+                   
                     button.onclick = () => {
                         location.href = `viewer.html?choice=injury&modelFile=${option.file}&joint=${jointType}&modelName=${option.name}`;
                     };
