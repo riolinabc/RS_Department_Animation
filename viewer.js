@@ -1,3 +1,7 @@
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
+
 window.goBack = function() {
             const urlParams = new URLSearchParams(window.location.search);
             const jointType = urlParams.get('joint'); // Get the joint type from the URL
@@ -10,9 +14,7 @@ window.goBack = function() {
             window.location.href = menuPage;
         };
 
-        import * as THREE from 'three';
-        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-        import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
+      
 
 
         let scene, camera, renderer, controls, mixer, clock;
