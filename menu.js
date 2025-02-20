@@ -5,54 +5,54 @@
         const options = {
             shoulder: {
                 movement: [
-                    { name: "Abduction", file: "/shoulder/abduction_shoulder.fbx" },
-                    { name: "Adduction", file: "/shoulder/adduction_shoulder.fbx" },
-                    { name: "Extension", file: "/shoulder/extension_shoulder.fbx" },
-                    { name: "Flexion", file: "/shoulder/flexion_shoulder.fbx" },
-                    { name: "External Rotation", file: "/shoulder/external_rotation_shoulder.fbx" },
-                    { name: "Internal Rotation", file: "/shoulder/internal_rotation_shoulder.fbx" }
+                    { name: "Abduction", file: "shoulder/abduction_shoulder.fbx" },
+                    { name: "Adduction", file: "shoulder/adduction_shoulder.fbx" },
+                    { name: "Extension", file: "shoulder/extension_shoulder.fbx" },
+                    { name: "Flexion", file: "shoulder/flexion_shoulder.fbx" },
+                    { name: "External Rotation", file: "shoulder/external_rotation_shoulder.fbx" },
+                    { name: "Internal Rotation", file: "shoulder/internal_rotation_shoulder.fbx" }
                 ],
                 injuries: [
                     // { name: "Anterior Dislocation", file: "/shoulder/shoulder1_v2.fbx" },
-                    { name: "Posterior Dislocation", file: "/shoulder/shoulder4_v2.fbx" }
+                    { name: "Posterior Dislocation", file: "shoulder/shoulder4_v2.fbx" }
                 ]
             },
             elbow: {
                 movement: [
-                    { name: "Extension", file: "/elbow/extension.fbx" },
-                    { name: "Flexion", file: "/elbow/flexion.fbx" },
-                    { name: "Pronation", file: "/elbow/pronation.fbx" },
-                    { name: "Supination", file: "/elbow/supination.fbx" }
+                    { name: "Extension", file: "elbow/extension.fbx" },
+                    { name: "Flexion", file: "elbow/flexion.fbx" },
+                    { name: "Pronation", file: "elbow/pronation.fbx" },
+                    { name: "Supination", file: "elbow/supination.fbx" }
                   
                 ],
                 injuries: [
                     // { name: "Valgus Overload", file: "/elbow/elbow2.fbx" },
-                    { name: "Elbow Fully Extended", file: "/elbow/elbow3.fbx" }
+                    { name: "Elbow Fully Extended", file: "elbow/elbow3.fbx" }
                 ]
             },
             hip: {
                 movement: [
-                { name: "Abduction", file: "/hip/hip_abduction.fbx" },
-                    { name: "Adduction", file: "/hip/hip_adduction.fbx" },
-                    { name: "Extension", file: "/hip/hip_extension.fbx" },
-                    { name: "Flexion", file: "/hip/hip_flexion.fbx" },
-                    { name: "Lateral Rotation", file: "/hip/hip_lateral_rotation.fbx" },
-                    { name: "Medial Rotation", file: "/hip/hip_medial_rotation.fbx" }
+                { name: "Abduction", file: "hip/hip_abduction.fbx" },
+                    { name: "Adduction", file: "hip/hip_adduction.fbx" },
+                    { name: "Extension", file: "hip/hip_extension.fbx" },
+                    { name: "Flexion", file: "hip/hip_flexion.fbx" },
+                    { name: "Lateral Rotation", file: "hip/hip_lateral_rotation.fbx" },
+                    { name: "Medial Rotation", file: "hip/hip_medial_rotation.fbx" }
                 ]
                
 
             },
             knee: {
                 movement: [
-                { name: "Abduction", file: "/knee/demo_abduction.fbx" },
-                    { name: "Adduction", file: "/knee/demo_adduction.fbx" },
-                    { name: "Extension", file: "/knee/demo_extension.fbx" },
-                    { name: "Flexion", file: "/knee/demo_flexion.fbx" },
-                    { name: "Lateral Rotation", file: "/knee/demo_lateralrotation.fbx" },
-                    { name: "Medial Rotation", file: "/knee/demo_medialrotation.fbx" }
+                { name: "Abduction", file: "knee/demo_abduction.fbx" },
+                    { name: "Adduction", file: "knee/demo_adduction.fbx" },
+                    { name: "Extension", file: "knee/demo_extension.fbx" },
+                    { name: "Flexion", file: "knee/demo_flexion.fbx" },
+                    { name: "Lateral Rotation", file: "knee/demo_lateralrotation.fbx" },
+                    { name: "Medial Rotation", file: "knee/demo_medialrotation.fbx" }
                 ],
                 injuries: [
-                    { name: "ACL Injury", file: "/knee/acl_2.fbx" }
+                    { name: "ACL Injury", file: "knee/acl_2.fbx" }
                    
                 ]
             },
@@ -68,14 +68,14 @@
                     //{ name: "Supination", file: "/ankle/supination_demo.fbx" }
 
 
-                    { name: "Abduction", file: "/ankle/sandal_demo/abduction_demo_sandal.fbx" },
-                    { name: "Adduction", file: "/ankle/sandal_demo/adduction_demo_sandal.fbx" },
-                    { name: "Eversion", file: "/ankle/sandal_demo/eversion_demo_sandal.fbx" },
-                    { name: "Inversion", file: "/ankle/sandal_demo/inversion_demo_sandal.fbx" },
-                    { name: "Plantarflexion", file: "/ankle/sandal_demo/plantar_flexion_demo_sandal.fbx" },
-                    { name: "Dorsiflexion", file: "/ankle/sandal_demo/dorsiflexion_demo_sandal.fbx" },
-                    { name: "Pronation", file: "/ankle/sandal_demo/pronation_demo_sandal.fbx" },
-                    { name: "Supination", file: "/ankle/sandal_demo/supination_demo_sandal.fbx" }
+                    { name: "Abduction", file: "ankle/sandal_demo/abduction_demo_sandal.fbx" },
+                    { name: "Adduction", file: "ankle/sandal_demo/adduction_demo_sandal.fbx" },
+                    { name: "Eversion", file: "ankle/sandal_demo/eversion_demo_sandal.fbx" },
+                    { name: "Inversion", file: "ankle/sandal_demo/inversion_demo_sandal.fbx" },
+                    { name: "Plantarflexion", file: "ankle/sandal_demo/plantar_flexion_demo_sandal.fbx" },
+                    { name: "Dorsiflexion", file: "ankle/sandal_demo/dorsiflexion_demo_sandal.fbx" },
+                    { name: "Pronation", file: "ankle/sandal_demo/pronation_demo_sandal.fbx" },
+                    { name: "Supination", file: "ankle/sandal_demo/supination_demo_sandal.fbx" }
 
 
                 ],
@@ -89,14 +89,14 @@
                     //{ name: "Inversion Adduction Plantarflexion", file: "/ankle/inversion_adduction_plantarflexion.fbx" },
                    // { name: "Inversion Dorsiflexion", file: "/ankle/inversion_dorsiflexion.fbx" },
 
-                   { name: "Eversion", file: "/ankle/sandal/eversion3_sandal.fbx" },
-                    { name: "Eversion Abduction", file: "/ankle/sandal/eversion_abduction_sandal.fbx" },
-                    { name: "Eversion Dorsiflexion", file: "/ankle/sandal/eversion_dorsiflexion_sandal.fbx"},
-                    { name: "Eversion Plantarflexion", file: "/ankle/sandal/eversion_plantarflexion_sandal.fbx" },
-                    { name: "Inversion", file: "/ankle/sandal/inversion3_sandal.fbx" },
-                    { name: "Inversion Abduction Dorsiflexion", file: "/ankle/sandal/inversion_abduction_dorsiflexion_sandal.fbx" },
-                    { name: "Inversion Adduction Plantarflexion", file: "/ankle/sandal/inversion_adduction_plantarflexion_sandal.fbx" },
-                    { name: "Inversion Dorsiflexion", file: "/ankle/sandal/inversion_dorsiflexion_sandal.fbx" },
+                   { name: "Eversion", file: "ankle/sandal/eversion3_sandal.fbx" },
+                    { name: "Eversion Abduction", file: "ankle/sandal/eversion_abduction_sandal.fbx" },
+                    { name: "Eversion Dorsiflexion", file: "ankle/sandal/eversion_dorsiflexion_sandal.fbx"},
+                    { name: "Eversion Plantarflexion", file: "ankle/sandal/eversion_plantarflexion_sandal.fbx" },
+                    { name: "Inversion", file: "ankle/sandal/inversion3_sandal.fbx" },
+                    { name: "Inversion Abduction Dorsiflexion", file: "ankle/sandal/inversion_abduction_dorsiflexion_sandal.fbx" },
+                    { name: "Inversion Adduction Plantarflexion", file: "ankle/sandal/inversion_adduction_plantarflexion_sandal.fbx" },
+                    { name: "Inversion Dorsiflexion", file: "ankle/sandal/inversion_dorsiflexion_sandal.fbx" },
 
                 ]
             }
