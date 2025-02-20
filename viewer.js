@@ -242,12 +242,12 @@ controls.maxAzimuthAngle = Infinity; // Rotate right
             checkCameraDistance();
 //update document title, aniamtion speed, ui
             if (modelName === "Eversion") {
-                document.title = "Injury 1";
+                document.title = "Eversion";
                 animationSpeed = 0.3; 
                 document.getElementById('speed-control').value = animationSpeed; // Update slider value
                 document.getElementById('speed-display').textContent = animationSpeed + "x"; // Update display
             } else if (modelName === "Inversion") {
-                document.title = "Injury 2";
+                document.title = "Inversion";
                 animationSpeed = 0.3; // Set to 0.3 for Injury 2
                 document.getElementById('speed-control').value = animationSpeed; // Update slider value
                 document.getElementById('speed-display').textContent = animationSpeed + "x"; // Update display
