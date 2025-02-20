@@ -14,6 +14,7 @@ window.goBack = function() {
         import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
         import { FBXLoader } from 'three/addons/loaders/FBXLoader.js';
 
+
         let scene, camera, renderer, controls, mixer, clock;
         let animationSpeed=0.5;
         let initialCameraPosition, initialCameraRotation;
