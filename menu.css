@@ -1,4 +1,33 @@
- body {
+
+.footer {
+    display: flex; /* Use flexbox */
+    flex-wrap: wrap; /* Allow items to wrap */
+    justify-content: center; /* Center items */
+    left: 0;
+    width: 100%; /* Full width */
+    background-color: rgb(255, 255, 255); /* Background color */
+    color: rgb(168, 168, 168); /* Text color */
+    text-align: right; /* Center text */
+    padding: 10px; /* Padding around footer */
+    font-size: small;
+}
+
+.footer p {
+    margin: 0 10px; /* Horizontal margin between paragraphs */
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 20px;
+    justify-content: center;
+    max-width: 1200px;
+    width: 100%;
+    flex-grow: 1;
+}
+
+body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -7,6 +36,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh; /* Ensure body takes at least full height */
+            
         }
        
         header {
