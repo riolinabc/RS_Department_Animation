@@ -35,8 +35,8 @@
     gap: 1rem;
     padding: 1rem; /* Space inside the container */
     margin: 1rem auto; /* Margin above and below the container, and auto for left and right */
-    border: 2px solid #0056b3; /* Border color */
-    background-color: #0056b3; /* Background color */
+    border: 2px solid #77b5e1; /* Border color */
+    background-color: #77b5e1; /* Background color */
     width: 90%; /* Maximum width of the container */
 }
 
