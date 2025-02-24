@@ -1,3 +1,52 @@
+.white-logo {
+    filter: brightness(0) invert(1); /* Makes the logo white */
+    height: 50px; /* Adjust height as necessary */
+}
+.divider {
+    border: none;
+    height: 2px; /* Thickness of the line */
+    background-color: #ccc; /* Color of the line */
+    margin: 1rem 0; /* Space above and below the line */
+}
+
+/* .logo-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem; 
+    background-color: #0056b3;
+} */
+.line{
+    font-size: 2rem;
+}
+
+.menuHeader{
+    margin:auto;
+}
+
+.viewerHeader{
+    margin:auto;
+}
+
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem; /* Space inside the container */
+    margin: 1rem auto; /* Margin above and below the container, and auto for left and right */
+    border: 2px solid #0056b3; /* Border color */
+    background-color: #0056b3; /* Background color */
+    width: 90%; /* Maximum width of the container */
+}
+
+        .logo-container img {
+            height: 5vh; /* Adjust height as necessary */
+            margin-bottom: 2vh;
+            min-height: 30px;
+        }
+
+
 
         p{font-size: small;}
         body {
@@ -6,6 +55,7 @@
             padding: 0;
             background-color: #f4f4f4;
             color: #333;
+            max-height: 100vh;
         }
 
         .back-icon {
@@ -52,17 +102,34 @@
     border:1px solid white; 
 }
 
-    
+  
+.footer {
+    display: flex; /* Use flexbox */
+    flex-wrap: wrap; /* Allow items to wrap */
+    justify-content: center; /* Center items */
+    left: 0;
+    width: 100%; /* Full width */
+    background-color: rgb(255, 255, 255); /* Background color */
+    color: rgb(168, 168, 168); /* Text color */
+    text-align: right; /* Center text */
+    padding: 10px; /* Padding around footer */
+    font-size: small;
+}
 
-        header {
-            background-color: #007BFF;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            display: flex; /* Use Flexbox for layout */
-    /* justify-content: space-between; Space between title and button */
-    align-items: center; /* Center vertically */
-        }
+.footer p {
+    margin: 0 10px; /* Horizontal margin between paragraphs */
+}  
+
+
+
+header {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    width: 100%;
+}
+
         
         #back-button {
             display:inline-block;
