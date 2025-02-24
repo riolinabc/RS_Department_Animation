@@ -1,3 +1,5 @@
+      html, body { max-width: 100%; overflow-x: hidden; }
+
 .white-logo {
     filter: brightness(0) invert(1); /* Makes the logo white */
     height: 50px; /* Adjust height as necessary */
@@ -26,6 +28,7 @@
 
 .viewerHeader{
     margin:auto;
+    align-content: center;
 }
 
 
@@ -38,6 +41,7 @@
     border: 2px solid #77b5e1; /* Border color */
     background-color: #77b5e1; /* Background color */
     width: 90%; /* Maximum width of the container */
+    max-width: 90%; /* Maximum width of the container */
 }
 
         .logo-container img {
