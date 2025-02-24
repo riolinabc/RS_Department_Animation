@@ -42,6 +42,7 @@
             flex-direction: column;
             align-items: center;
             max-height: 100vh; /* Ensure the body takes at least full viewport height */
+            max-width:100vw;
         }
         .white-logo {
             filter: brightness(0) invert(1);
