@@ -559,9 +559,9 @@ function checkCameraDistance() {
 
 
             if (urlParams.get('modelName') === "Eversion") {
-                document.getElementById('model-title').textContent= "E"|| '3D Model Viewer'; // Assign directly to modelName
+                document.getElementById('model-title').textContent= "Eversion"|| '3D Model Viewer'; // Assign directly to modelName
             } else if (urlParams.get('modelName') === "Inversion") {
-                document.getElementById('model-title').textContent = "I"|| '3D Model Viewer';
+                document.getElementById('model-title').textContent = "Inversion"|| '3D Model Viewer';
             } else  if (modelName=== "Elbow Fully Extended") {
                 document.getElementById('model-title').textContent= "Outstretched Hand"|| '3D Model Viewer'; // Assign directly to modelName
             } 
