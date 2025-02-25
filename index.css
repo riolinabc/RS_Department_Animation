@@ -63,7 +63,8 @@
             background-color: #0056b3;
         } */
 .line{
-    font-size: 2rem;
+    /* font-size: 2rem; */
+    height: 3%;
 }
 
 .logo-container {
@@ -78,9 +79,9 @@
 }
 
         .logo-container img {
-            height: 5vh; /* Adjust height as necessary */
-            margin-bottom: 2vh;
-            min-height: 30px;
+            height: 3vw; /* Adjust height as necessary */
+            /* margin-bottom: 2vh; */
+            min-height: 23px;
         }
         header {
             background-color: #007BFF;
