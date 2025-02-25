@@ -553,7 +553,7 @@ function checkCameraDistance() {
         document.addEventListener("DOMContentLoaded", function() {
             const urlParams = new URLSearchParams(window.location.search);
             const modelFile = urlParams.get('modelFile') || 'default.fbx'; // Replace with your model file
-            const modelName=urlParams.get('modelName') ; // Declare modelName in a broader scope
+            const modelName=urlParams.get('modelName') ; 
 
 //model header/title
 
