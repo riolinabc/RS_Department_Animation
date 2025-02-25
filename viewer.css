@@ -1,3 +1,5 @@
+    html, body { max-width: 100%; overflow-x: hidden; }
+
 .white-logo {
     filter: brightness(0) invert(1); /* Makes the logo white */
     height: 50px; /* Adjust height as necessary */
@@ -26,6 +28,7 @@
 
 .viewerHeader{
     margin:auto;
+    align-content: center;
 }
 
 
@@ -35,9 +38,10 @@
     gap: 1rem;
     padding: 1rem; /* Space inside the container */
     margin: 1rem auto; /* Margin above and below the container, and auto for left and right */
-    border: 2px solid #0056b3; /* Border color */
-    background-color: #0056b3; /* Background color */
-    width: 90%; /* Maximum width of the container */
+    border: 2px solid #77b5e1; /* Border color */
+    background-color: #77b5e1; /* Background color */
+   
+    max-width: 90%; /* Maximum width of the container */
 }
 
         .logo-container img {
@@ -127,7 +131,7 @@ header {
     color: white;
     padding: 10px 20px;
     text-align: center;
-    width: 100%;
+
 }
 
         

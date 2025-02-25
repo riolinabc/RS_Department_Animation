@@ -4,20 +4,15 @@
 
 
 
+    window.goBack = function(){const urlParams = new URLSearchParams(window.location.search);
+    const jointType = urlParams.get('joint');
 
-window.goBack = function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const jointType = urlParams.get('joint'); // Get the joint type from the URL
-            let menuPage = 'menu.html';
+    // Construct the href for the back button
+    document.getElementById('back-button').onclick = function() {
+        window.location.href = `menu.html?joint=${jointType.toLowerCase()}`;
+    };
+}
 
-            if (jointType) {
-                menuPage = `menu.html?joint=${jointType.toLowerCase()}`;
-            }
-
-            window.location.href = menuPage;
-        };
-
-      
 
 
         let scene, camera, renderer, controls, mixer, clock;
@@ -32,6 +27,7 @@ window.goBack = function() {
         const maxDistance=5;
 
         window.onload = function() {
+            goBack();
     setMarkerPositions(); // Call it to set initial positions on load
     adjustRendererSize(); // Adjust size initially
     window.addEventListener('resize', adjustRendererSize); // Add resize event listener
