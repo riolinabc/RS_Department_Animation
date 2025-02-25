@@ -33,9 +33,6 @@ html, body { max-width: 100%; overflow-x: hidden; }
     margin-bottom: 1rem; 
     background-color: #0056b3;
 } */
-.line{
-    font-size: 2rem;
-}
 
 .menuHeader{
     margin:auto;
@@ -53,11 +50,16 @@ html, body { max-width: 100%; overflow-x: hidden; }
     max-width: 90%;
 }
 
-        .logo-container img {
-            height: 5vh; /* Adjust height as necessary */
-            margin-bottom: 2vh;
-            min-height: 30px;
-        }
+.line{
+    /* font-size: 2rem; */
+    height: 3%;
+}
+
+.logo-container img {
+    height: 3vw; /* Adjust height as necessary */
+    /* margin-bottom: 2vh; */
+    min-height: 23px;
+}
 header {
     background-color: #007BFF;
     color: white;

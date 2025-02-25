@@ -67,6 +67,12 @@
     height: 3%;
 }
 
+.logo-container img {
+    height: 3vw; /* Adjust height as necessary */
+    /* margin-bottom: 2vh; */
+    min-height: 23px;
+}
+
 .logo-container {
     display: flex;
     justify-content: center;
@@ -78,11 +84,7 @@
     max-width: 90%; /* Maximum width of the container */
 }
 
-        .logo-container img {
-            height: 3vw; /* Adjust height as necessary */
-            /* margin-bottom: 2vh; */
-            min-height: 23px;
-        }
+        
         header {
             background-color: #007BFF;
             color: white;
