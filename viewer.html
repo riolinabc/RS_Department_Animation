@@ -11,30 +11,7 @@
             "three/addons/": "./three/examples/jsm/" 
         } 
     } </script> 
-   
-   
-    <!-- <script type="importmap"> { 
-    "imports": { 
-        "three": "three/build",
-        "three/addons/": "three/examples/jsm" 
-    } 
-} </script>  -->
-<!-- <script type="importmap">
-    {
-        "imports": {
-                "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
-                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
-        }
-    }
-</script> -->
-<!-- <script type="importmap">
-    {
-        "imports": {
-                "three": "https://github.com/riolinabc/RS_Department_Animation/tree/30fdbc780e572b87f21c0372c09e578ed447b8dc/three/build",
-                "three/addons/": "https://github.com/riolinabc/RS_Department_Animation/tree/30fdbc780e572b87f21c0372c09e578ed447b8dc/three/examples/jsm"
-        }
-    }
-</script> -->
+
 </head>
 <body>
     <header>
@@ -58,7 +35,59 @@
     </div>
     </header>
     <div id="all">
+       
         <div id="viewer-container">
+            <div class="button-container">
+                <button id="howtouse-button" class="description-button">
+                    <span id="triangle-howtouse">▼</span>Help
+                </button>
+                <button id="description" class="description-button">
+                    <span id="triangle-description">▼</span>Description
+                </button>
+                <button id="control-button" class="description-button">
+                    <span id="triangle-control">▼</span> Control
+                </button>
+                
+            </div>
+            
+            
+            <div id="howtouse-content" class="hidden">
+                <p>For mobile devices, one finger to rotate, two finger to pan, pinch to zoom in/out.
+                    <br><br>For computer, left mouse button to rotate, right mouse button to pan, scroll middle mouse button to zoom.</p>
+            </div>
+            
+            <div id="description-content" class="hidden">
+                <p>This is the description that will slide down.</p>
+            </div>
+
+            
+            <div id="controls" class="hidden" style="display:none">
+                
+               
+                <button id="reset-camera">Reset Camera</button>
+                <div id="animspeed">
+                <!-- <span id="animspeed"> -->
+                Animation Speed: 
+                <input type="range" id="speed-control" min="0.01" max="1" value="0.5" step="0.01">
+                <span id="speed-display">0.5x</span>
+                <!-- </span> -->
+
+            </div>
+            <div id="light">
+                Ambient Light Intensity: 
+                <input type="range" id="ambient-light-control" min="0" max="5" value="1.5" step="0.1">
+                <span id="ambient-light-display">1.5</span>
+            </div>
+              
+                
+            </div>
+            
+
+      
+       
+        
+
+ 
 <!-- <div class="whole-timeline"> -->
 <div class="timeline-wrapper">
     
@@ -74,7 +103,7 @@
            
 
             </div>
-
+           
             <div class="all-control">
                 <div class="two-buttons">
                     <button class="control-button" id="play-button">
@@ -105,17 +134,18 @@
            
             <!-- </div>
              -->
-            
-
-            <button id="toggle-controls" >Controls</button>
+         
 
             
-            
+             
+           
         </div>
 
+        <div>
         
+        </div>
         
-        <div id="controls">
+        <!-- <div id="controls">
             <button id="close-controls" >✖</button>
             <button id="reset-camera">Reset Camera</button>
             <br><br>
@@ -132,7 +162,8 @@
                 <br><br>For computer, left mouse button to rotate, right mouse button to pan, scroll middle mouse button to zoom.</p>
             
         
-    </div>
+    </div> -->
+  
     <div><p></p></div>
    
     <script type="module" src="viewer.js"></script>

@@ -15,6 +15,9 @@
 
 
 
+
+
+
         let scene, camera, renderer, controls, mixer, clock;
         let animationSpeed=0.5;
         let initialCameraPosition, initialCameraRotation;
@@ -65,6 +68,15 @@ function adjustRendererSize() {
             initialCameraRotation = camera.rotation.clone();
 
             renderer = new THREE.WebGLRenderer({ antialias: true });
+
+
+            //neww 
+
+            renderer.domElement.id = 'threejs-canvas';
+// document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+
+
             renderer.outputEncoding = THREE.sRGBEncoding;
             //renderer.setSize(window.innerWidth * 0.8, window.innerHeight * 0.8);
             //document.getElementById('viewer-container').appendChild(renderer.domElement);
@@ -583,6 +595,60 @@ function checkCameraDistance() {
                 controls.target.copy(modelCenter);
                 controls.update();
             });
+
+
+            document.getElementById('description').addEventListener('click', function() {
+                const descriptionContent = document.getElementById('description-content');
+                const triangleDescription = document.getElementById('triangle-description');
+            
+                const isVisible = descriptionContent.classList.toggle('show');
+            
+                if (isVisible) {
+                    triangleDescription.innerHTML = '▲'; // Change to up arrow
+                    descriptionContent.style.display = "block"; // Show content
+                } else {
+                    triangleDescription.innerHTML = '▼'; // Change to down arrow
+                    descriptionContent.style.display = "none"; // Hide content
+                }
+            });
+
+
+            document.getElementById('howtouse-button').addEventListener('click', function() {
+                const howtouse = document.getElementById('howtouse-content');
+                const triangleHowtouse = document.getElementById('triangle-howtouse');
+            
+                const isVisible = howtouse.classList.toggle('show');
+            
+                if (isVisible) {
+                    triangleHowtouse.innerHTML = '▲'; // Change to up arrow
+                    howtouse.style.display = "block"; // Show content
+                } else {
+                    triangleHowtouse.innerHTML = '▼'; // Change to down arrow
+                    howtouse.style.display = "none"; // Hide content
+                }
+            });
+
+            
+            document.getElementById('control-button').addEventListener('click', function() {
+                const controlsContent = document.getElementById('controls');
+                const triangleControl = document.getElementById('triangle-control');
+            
+                const isVisible = controlsContent.classList.toggle('show');
+            
+                if (isVisible) {
+                    triangleControl.innerHTML = '▲'; // Change to up arrow
+                    controlsContent.style.display="flex" // Show content
+                } else {
+                    triangleControl.innerHTML = '▼'; // Change to down arrow
+                    controlsContent.style.display = "none"; // Hide content
+                }
+            });
+
+
+
+
+
+
             initTouchControls();
         
             init(modelFile, modelName);
@@ -657,26 +723,28 @@ function checkCameraDistance() {
         }
     });
 }
-        document.getElementById('toggle-controls').addEventListener('click', function() {
-    const controlsDiv = document.getElementById('controls');
-    const closeButton = document.getElementById('close-controls');
+//         document.getElementById('toggle-controls').addEventListener('click', function() {
+//     const controlsDiv = document.getElementById('controls');
+//     const closeButton = document.getElementById('close-controls');
 
-    // Only toggle controls if the screen width is less than 1100px
-    if (window.innerWidth < 1100) {
-        if (controlsDiv.style.display === 'none' || controlsDiv.style.display === '') {
-            controlsDiv.style.display = 'block'; // Show controls
-            closeButton.style.display = 'block'; // Show close button
-            controlsDiv.style.marginTop = '10px'; // Optional: add space below the button
-        } else {
-            controlsDiv.style.display = 'none'; // Hide controls
-            closeButton.style.display = 'none'; // Hide close button
-        }
-    }
-});
+//     // Only toggle controls if the screen width is less than 1100px
+//     if (window.innerWidth < 1100) {
+//         if (controlsDiv.style.display === 'none' || controlsDiv.style.display === '') {
+//             controlsDiv.style.display = 'block'; // Show controls
+//             closeButton.style.display = 'block'; // Show close button
+//             controlsDiv.style.marginTop = '10px'; // Optional: add space below the button
+//         } else {
+//             controlsDiv.style.display = 'none'; // Hide controls
+//             closeButton.style.display = 'none'; // Hide close button
+//         }
+//     }
+// });
 
 // Close button functionality
-document.getElementById('close-controls').addEventListener('click', function() {
-    const controlsDiv = document.getElementById('controls');
-    controlsDiv.style.display = 'none'; // Hide controls
-    this.style.display = 'none'; // Hide close button
-});
+// document.getElementById('close-controls').addEventListener('click', function() {
+//     const controlsDiv = document.getElementById('controls');
+//     controlsDiv.style.display = 'none'; // Hide controls
+//     this.style.display = 'none'; // Hide close button
+// });
+
+

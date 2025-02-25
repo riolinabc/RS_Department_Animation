@@ -1,5 +1,95 @@
     html, body { max-width: 100%; overflow-x: hidden; }
 
+    #canvas-container {
+        display: flex; /* Use flexbox for alignment */
+        justify-content: center; /* Center horizontally */
+        align-items: center; /* Center vertically */
+        height: 100vh; /* Full viewport height */
+        background-color: #f4f4f4; /* Optional background color */
+    }
+    
+    #threejs-canvas {
+        margin: auto;
+        max-width: 100%; /* Ensure it doesn't overflow */
+        max-height: 100%; /* Ensure it doesn't overflow */
+    }
+
+    .button-container {
+        display: flex; /* Enable flexbox */
+        justify-content: flex-start; /* Align items to the left */
+        gap: 10px; /* Space between buttons */
+        margin-bottom: 10px; /* Space below the button container */
+    }
+    
+    .description-button {
+        margin: 0; /* Remove default margin */
+        padding: 10px; /* Add padding for buttons */
+        cursor: pointer; /* Pointer on hover */
+        background-color: #f0f0f0; /* Button background color */
+        border: 1px solid #ccc; /* Button border */
+        border-radius: 5px; /* Rounded corners */
+        transition: background-color 0.3s; /* Smooth transition for hover */
+    }
+    
+    .description-button:hover {
+        background-color: #eaf4ff; /* Change color on hover */
+    }
+    
+    .hidden {
+        display: none; /* Hide by default */
+    }
+    
+    #description-content, #howtouse-content 
+     {
+        transition: max-height 0.3s ease-out;
+        padding-left:10px;
+        overflow: hidden;
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+
+    
+    #animspeed, #light {
+        display: flex; /* Use flexbox to align items */
+        align-items: center; /* Center items vertically */
+    
+       width:350px;
+     
+    }
+    
+   
+    
+    #reset-camera {
+        margin-right: 30px; /* Add space to the right of the reset button */
+        
+        padding: 5px; /* Add padding for buttons */
+        cursor: pointer; /* Pointer on hover */
+        background-color: #f6f6f6; /* Button background color */
+        border: 1px solid #ccc; /* Button border */
+        border-radius: 5px; /* Rounded corners */
+        transition: background-color 0.3s; /* Smooth transition for hover */
+    }
+
+    #reset-camera:hover {
+        background-color: #d8eeff; /* Change color on hover */
+    }
+    
+        #controls {
+            display: flex; /* Enable flexbox */
+            align-items: center; /* Align items vertically in the center */
+            
+            transition: max-height 0.3s ease-out;
+            overflow: hidden;
+            background-color: rgba(255, 255, 255, 0.5);
+            flex-wrap: nowrap;
+            padding:1vh;
+        }
+    
+    
+    .show {
+        display: block; /* Show when active */
+    }
+
 .white-logo {
     filter: brightness(0) invert(1); /* Makes the logo white */
     height: 50px; /* Adjust height as necessary */
@@ -260,14 +350,14 @@ z-index: 1000;}
             
             
         }
-        #controls {
+        /* #controls {
             flex: 1;
             padding: 20px;
            
             text-align: center;
             background-color: white;
             box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
-        }
+        } */
 
 
         
@@ -306,10 +396,10 @@ z-index: 1000;}
     display: none; /* Initially hidden */
 }
 
-#toggle-controls {
-        display: none; /* Show toggle button */
-        margin: 10px; /* Optional spacing */
-    }
+/* #toggle-controls {
+        display: none;
+        margin: 10px;
+    } */
 
     .timeline-with-markers {
         width:100%;
@@ -353,31 +443,25 @@ z-index: 1000;}
 }
 
 
-    @media (min-width: 1099px) {
+    /* @media (min-width: 1099px) {
     #controls {
-        display: block; /* Show controls by default */
+        display: block;
+    } 
+}*/
+@media (max-width: 850px) { 
+    
+    #animspeed, #light {
+        display: flex; /* Use flexbox to align items */
+        align-items: center; /* Center items vertically */
+    font-size: small;
+       width:300px;
+     
     }
-}
-@media (max-width: 1100px) { 
-    #controls {
-        display: none; /* Hide controls by default */
-        position:absolute;
-        top:80px;
-        padding: 20px;
-            text-align: center;
-            background-color: white;
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
-            z-index:1000;
-        
-    }
-   
-    #toggle-controls {
-        display: block; /* Show toggle button */
-        margin: 10px; /* Optional spacing */
-    }
+    
+    
 }
     
-@media (max-width: 500px) {
+@media (max-width: 780px) {
     header {
         flex-direction: column; /* Stack items vertically */
         align-items: center; /* Center items horizontally */
@@ -391,22 +475,21 @@ z-index: 1000;}
         font-size: 20px; /* Optional: Adjust title size for smaller screens */
     }
 
-
     #controls {
-        display: none; /* Hide controls by default */
-        position:absolute;
-        top:80px;
-        padding: 20px;
-            text-align: center;
-            background-color: white;
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
-        
+        display: flex; /* Enable flexbox */
+        align-items: center; /* Align items vertically in the center */
+        flex-direction: column;
+        transition: max-height 0.3s ease-out;
+        overflow: hidden;
+        background-color: rgba(255, 255, 255, 0.5);
+       
+        padding:1vh;
+        font-size: small;
     }
-   
-    #toggle-controls {
-        display: block; /* Show toggle button */
-        margin: 10px; /* Optional spacing */
-    }
+    /* #toggle-controls {
+        display: block;
+        margin: 10px; 
+    } */
    
 }
 
