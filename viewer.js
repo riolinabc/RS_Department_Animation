@@ -248,6 +248,21 @@ controls.maxAzimuthAngle = Infinity; // Rotate right
             animate();
             setMarkerPositions();
             checkCameraDistance();
+
+
+            
+//description
+            if (urlParams.get('joint') === 'ankle' && urlParams.get('choice') === 'injury') {
+                if (urlParams.get('modelName') === 'Inversion') {
+                    document.getElementById('description-content').innerHTML = "This is the description for"+urlParams.get('joint') + "ankle injury inversion.";
+                }
+                // Add more conditions for other model names if needed
+            }
+
+
+
+
+
 //update document title, aniamtion speed, ui
             if (modelName === "Eversion") {
                 document.title = "Eversion";
