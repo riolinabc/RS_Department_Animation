@@ -92,10 +92,7 @@ function adjustRendererSize() {
             controls.panSpeed = 1.0;
             controls.minDistance = minDistance; //zoom distance
            controls.maxDistance = maxDistance; //zoom distance
-           // Allow 450-degree horizontal rotation
-// Allow full vertical rotation
-// controls.minPolarAngle = -Math.PI*2; // Looking straight up
-// controls.maxPolarAngle = Math.PI*3; // Looking straight down
+          
 
 controls.minPolarAngle = -Math.PI*2; // Looking straight up
 controls.maxPolarAngle =Math.PI*2; // Looking straight down
@@ -738,28 +735,5 @@ function checkCameraDistance() {
         }
     });
 }
-//         document.getElementById('toggle-controls').addEventListener('click', function() {
-//     const controlsDiv = document.getElementById('controls');
-//     const closeButton = document.getElementById('close-controls');
-
-//     // Only toggle controls if the screen width is less than 1100px
-//     if (window.innerWidth < 1100) {
-//         if (controlsDiv.style.display === 'none' || controlsDiv.style.display === '') {
-//             controlsDiv.style.display = 'block'; // Show controls
-//             closeButton.style.display = 'block'; // Show close button
-//             controlsDiv.style.marginTop = '10px'; // Optional: add space below the button
-//         } else {
-//             controlsDiv.style.display = 'none'; // Hide controls
-//             closeButton.style.display = 'none'; // Hide close button
-//         }
-//     }
-// });
-
-// Close button functionality
-// document.getElementById('close-controls').addEventListener('click', function() {
-//     const controlsDiv = document.getElementById('controls');
-//     controlsDiv.style.display = 'none'; // Hide controls
-//     this.style.display = 'none'; // Hide close button
-// });
 
 
