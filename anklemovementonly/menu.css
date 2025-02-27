@@ -1,0 +1,152 @@
+ body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+       
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            padding-left: 60px; 
+            text-align: center;
+            width: 100%; 
+            display: flex;
+    align-items: center; /* Center vertically */
+    flex-wrap: wrap; /* Allow wrapping */
+        }
+
+       
+        
+        .menu {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            width: 100%;
+            max-width: 800px;
+            flex-wrap: wrap; /* Allow wrapping of columns */
+        }
+        .column {
+            flex: 1 1 200px; ;
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .column h2 {
+            margin-bottom: 10px;
+        }
+        .menu button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 5px;
+            cursor: pointer;
+            width: 100%; /* Use full width for buttons */
+    max-width: 200px; /* Restrict max width */
+            
+        }
+        .menu button:hover {
+            background-color: #0056b3;
+        }
+        .back-icon {
+           
+           display: flex; /* Use flexbox to align children */
+           align-items: center; /* Center vertically */
+       }
+       
+       .back-arrow {
+           display: inline-block;
+           width: 0;
+           height: 0;
+           border-left: 8px solid transparent; /* Left transparent border */
+           border-right: 8px solid transparent; /* Right transparent border */
+           border-top: 15px solid white; /* Create the arrow */
+           border-bottom: 2px solid transparent;
+           transform: rotate(90deg); /* Rotate the arrow */
+           margin: 0; /* Ensure no margin */
+           padding: 0; /* Ensure no padding */
+           vertical-align: middle; /* Align vertically */
+          
+       }
+       
+       .back-rectangle {
+           display: inline-block;
+           width: 8px; /* Width of the rectangle */
+           height: 6px; /* Height of the rectangle */
+           background-color: white; /* Color of the rectangle */
+           margin: 0; /* Reduce spacing */
+           padding: 0; /* Ensure no padding */
+           vertical-align: middle; /* Align vertically */
+           border:1px solid white; 
+       }
+       
+           
+       
+               
+               #back-button {
+                   display:inline-block;
+                   background-color: #0056b3;
+                   color: white;
+                   border: none;
+                   padding: 10px 15px;
+                   cursor: pointer;
+                   border-radius: 5px;
+                   text-decoration: none;
+                   align-items: center; /* Center content vertically */
+                   justify-content: center; /* Center content horizontally */
+               }
+       
+               #model-title {
+                   padding: 10px 15px;
+                   display:inline-block;
+               }
+               #back-button:hover {
+                   background-color: #004494;
+               }
+               /* Media Queries for Responsiveness */
+        @media (max-width: 600px) {
+            .menu {
+                flex-direction: column; /* Stack columns vertically on small screens */
+            }
+
+            .column {
+                flex: 1 1 auto; /* Allow columns to take full width */
+                margin: 10px 0; /* Margin between stacked columns */
+            }
+
+            .menu button {
+                width: 90%; /* Use most of the screen width for buttons */
+            }
+
+            
+}
+@media (max-width: 500px) {
+    header {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center items horizontally */
+    }
+
+    #back-button {
+        margin-bottom: 10px; /* Add some space between button and title */
+    }
+
+    #model-title {
+        font-size: 20px; /* Optional: Adjust title size for smaller screens */
+    }
+
+    header {
+            
+        padding: 10px 20px; 
+            
+        }
+
+
+    }
