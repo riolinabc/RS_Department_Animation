@@ -1,5 +1,9 @@
     html, body { max-width: 100%; overflow-x: hidden; }
-
+   .icon{
+    padding-right: 35px;
+    height: 35px;
+    vertical-align: bottom;
+   }
     #canvas-container {
         display: flex; /* Use flexbox for alignment */
         justify-content: center; /* Center horizontally */
