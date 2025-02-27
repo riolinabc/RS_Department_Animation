@@ -2,7 +2,11 @@
        
         html, body { max-width: 100%; overflow-x: hidden; }
        
-
+        .vl {
+            border-left: 3px solid rgb(255, 255, 255);
+           
+          }
+        
     .footer {
         display: flex; /* Use flexbox */
         flex-wrap: wrap; /* Allow items to wrap */
@@ -62,10 +66,7 @@
             margin-bottom: 1rem; 
             background-color: #0056b3;
         } */
-.line{
-    /* font-size: 2rem; */
-    height: 3%;
-}
+
 
 .logo-container img {
     height: 3vw; /* Adjust height as necessary */

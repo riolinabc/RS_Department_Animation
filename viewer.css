@@ -4,6 +4,12 @@
     height: 35px;
     vertical-align: bottom;
    }
+
+   .vl {
+    border-left: 3px solid rgb(255, 255, 255);
+   
+  }
+
     #canvas-container {
         display: flex; /* Use flexbox for alignment */
         justify-content: center; /* Center horizontally */
@@ -131,10 +137,11 @@
     max-width: 90%;
 }
 
-.line{
-    /* font-size: 2rem; */
-    height: 3%;
-}
+/* .line{
+
+    height: 4%;
+    vertical-align: bottom;
+} */
 
 .logo-container img {
     height: 3vw; /* Adjust height as necessary */
