@@ -18,6 +18,8 @@
         text-align: right; /* Center text */
         padding: 10px; /* Padding around footer */
         font-size: small;
+        position:absolute;
+    bottom:0%;
     }
     
     .footer p {
