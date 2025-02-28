@@ -1,4 +1,4 @@
-html, body { max-width: 100%; overflow-x: hidden; }
+html, body { max-width: 100%; overflow-x: hidden;  }
 
 .vl {
     border-left: 3px solid rgb(255, 255, 255);
@@ -6,19 +6,17 @@ html, body { max-width: 100%; overflow-x: hidden; }
   }
 
 
-.footer {
-    display: flex; /* Use flexbox */
-    flex-wrap: wrap; /* Allow items to wrap */
-    justify-content: center; /* Center items */
-    left: 0;
-    width: 100%; /* Full width */
-    background-color: rgb(255, 255, 255); /* Background color */
-    color: rgb(168, 168, 168); /* Text color */
-    text-align: right; /* Center text */
-    padding: 10px; /* Padding around footer */
-    font-size: small;
-    position:absolute;
-    bottom:0%;
+  .footer {
+    display: flex  ;
+        flex-wrap: wrap;
+        left: 0;
+        justify-content: center;
+        width: 100%;
+        background-color: rgb(255, 255, 255);
+        color: rgb(168, 168, 168);
+        text-align: center;
+        font-size: small;
+        padding: 10px
 }
 
 .footer p {
@@ -89,7 +87,7 @@ body {
             display: flex;
             flex-direction: column;
             align-items: center;
-            max-height: 100vh; /* Ensure body takes at least full height */
+            min-height: 100vh; /* Ensure body takes at least full height */
             
         }
        
