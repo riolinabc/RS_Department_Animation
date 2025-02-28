@@ -214,7 +214,7 @@
     width: 100%; /* Full width */
     background-color: rgb(255, 255, 255); /* Background color */
     color: rgb(168, 168, 168); /* Text color */
-    text-align: right; /* Center text */
+    text-align: center; /* Center text */
     padding: 10px; /* Padding around footer */
     font-size: small;
 }
