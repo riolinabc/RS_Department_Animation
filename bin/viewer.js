@@ -28,19 +28,6 @@
         let previousTime = 0; // Initialize previousTime
         const minDistance = 0.1; // Minimum distance from the object
         const maxDistance=5;
-        let boundingBox; // Declare this at the beginning with other global variables
-        let upperLegJoint, footJoint; // Declare these as global variables
-        const leftUpLegBones = [];
-        const leftElbowBones=[];
-        const leftKneeBones=[];
-        const hipBones=[];
-  
-        const rightShoulderBones=[];
-        const rightElbowBones=[];
-        const rightUpLegBones=[];
-        let showSkeleton=false;
-        let skeletonHelpers = [];
-       
 
         window.onload = function() {
             goBack();
@@ -65,9 +52,6 @@ function adjustRendererSize() {
 }
         function init(modelFile, modelName) {
             scene = new THREE.Scene();
-            const boneGroup = new THREE.Group(); // Initialize boneGroup
-scene.add(boneGroup);
-
             scene.background = new THREE.Color(0xeeeeee);
 
             camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -129,9 +113,6 @@ controls.maxAzimuthAngle = Infinity; // Rotate right
 
             loader.load(modelFile, (object) => {
                 mixer = new THREE.AnimationMixer(object);
-                 // Create a group to hold the specific bones
-  
-
                  
                 if (object.animations && object.animations.length > 0) {
                     const action = mixer.clipAction(object.animations[0]);
@@ -139,16 +120,6 @@ controls.maxAzimuthAngle = Infinity; // Rotate right
                     totalDuration = action.getClip().duration;
                     document.getElementById('timeline').max = totalDuration;
                 }
-                
-
-    //               // Create a skeleton helper to visualize the bones
-    // const skeletonHelper = new THREE.SkeletonHelper(object);
-    // skeletonHelper.visible = true; // Set to true to see the skeleton
-    // scene.add(skeletonHelper);
-                   
-
-  
-
                 // Fix the comparison operator
                 
                 if (urlParams.get('joint') === 'ankle' && urlParams.get('choice') === 'injury') {
@@ -243,77 +214,7 @@ controls.maxAzimuthAngle = Infinity; // Rotate right
                   }
                 // Traverse the loaded object
     object.traverse((child) => {
-
-        console.log('Traversing child:', child); // Debugging line
-        if (!child) {
-            console.error('Child is undefined');
-            return;
-        }
-
         child.frustumCulled = false; // Disable frustum culling
-
-        if (child.isBone){
-            if(urlParams.get('joint') === 'ankle' && child.name=== 'LeftUpLeg' ) { 
-                console.log("bone found");
-                
-                leftUpLegBones.push(child); // Add bone to the array
-                console.log("bone pushed", leftUpLegBones); 
-            //     const label = createJointLabel('Left Up Leg', child.position.clone());
-            // scene.add(label);       
-            }
-
-            if(urlParams.get('joint') === 'ankle' && child.name=== 'RightUpLeg' ) { 
-                console.log("bone found");
-                
-                rightUpLegBones.push(child); // Add bone to the array
-                console.log("bone pushed", rightUpLegBones);    
-                // const label = createJointLabel('Right Up Leg', child.position.clone());
-                // scene.add(label);    
-            }
-
-
-
-            if(urlParams.get('joint') === 'knee' && child.name=== 'RightUpLeg' ) { 
-                console.log("bone found");
-                
-                leftKneeBones.push(child); // Add bone to the array
-                console.log("bone pushed", leftKneeBones);        
-            }
-
-            if(urlParams.get('joint') === 'hip' && child.name=== 'LeftUpLeg' ) { 
-                console.log("bone found");
-                
-                hipBones.push(child); // Add bone to the array
-                console.log("bone pushed", hipBones);        
-            }
-
-
-            if(urlParams.get('joint') === 'elbow' && child.name=== 'LeftArm' ) { 
-                console.log("bone found");
-                
-                leftElbowBones.push(child); // Add bone to the array
-                console.log("bone pushed", leftElbowBones);        
-            }
-
-            if(urlParams.get('joint') === 'elbow' && child.name=== 'RightArm' ) { 
-                console.log("bone found");
-                
-                rightElbowBones.push(child); // Add bone to the array
-                console.log("bone pushed", rightElbowBones);        
-            }
-
-            if(urlParams.get('joint') === 'shoulder' && child.name=== 'RightShoulder' ) { 
-                console.log("bone found");
-                
-                rightShoulderBones.push(child); // Add bone to the array
-                console.log("bone pushed", hipBones);        
-            }
-        }
-
-        
-        
-    
-    
         if (child.isMesh) {
             // Check if the mesh has one or multiple materials
             if (Array.isArray(child.material)) {
@@ -332,117 +233,10 @@ controls.maxAzimuthAngle = Infinity; // Rotate right
                 child.material.side = THREE.DoubleSide; // Use double-sided rendering
             }
         }
-
-        
     });
-                 
-                 
-    document.getElementById('highlight').addEventListener('click', function() {
-
-        
-        if (showSkeleton ==false){showSkeleton =true;          
-            document.getElementById('highlight').innerHTML = '👁️Highlight';
-            
-           
-            } 
-        else if(showSkeleton ==true){showSkeleton =false;
-            document.getElementById('highlight').innerHTML = '🚫Highlight';
-            
-        } // Toggle showSkeleton
-    
-        // Clear existing skeleton helpers from the scene
-        if (!showSkeleton) {
-            skeletonHelpers.forEach(helper => {
-                scene.remove(helper);
-            });
-            skeletonHelpers = []; // Clear the array
-        } else {
-
-if(urlParams.get('joint') === 'ankle'){
-
-    if ( urlParams.get('choice') === 'injury'){
-        leftUpLegBones.forEach(bone => {
-            const skeletonHelper = new THREE.SkeletonHelper(bone);
-        skeletonHelper.visible = true; // Set to true to see the skeleton
-        scene.add(skeletonHelper);
-        skeletonHelpers.push(skeletonHelper);
-    });    
-     }
-     else{  
-        rightUpLegBones.forEach(bone => {
-        const skeletonHelper = new THREE.SkeletonHelper(bone);
-    skeletonHelper.visible = true; // Set to true to see the skeleton
-    scene.add(skeletonHelper);
-    skeletonHelpers.push(skeletonHelper);});
-
-}
-
-
-}
-
-
-if(urlParams.get('joint') === 'shoulder'){
-
-    rightShoulderBones.forEach(bone => {
-        const skeletonHelper = new THREE.SkeletonHelper(bone);
-    skeletonHelper.visible = true; // Set to true to see the skeleton
-    scene.add(skeletonHelper);
-    skeletonHelpers.push(skeletonHelper);
-});
-  console.log('BoneGroup contents:', boneGroup.children); // Debugging line
-}
-
-if(urlParams.get('joint') === 'hip'){
-
-    hipBones.forEach(bone => {
-        const skeletonHelper = new THREE.SkeletonHelper(bone);
-    skeletonHelper.visible = true; // Set to true to see the skeleton
-    scene.add(skeletonHelper);
-    skeletonHelpers.push(skeletonHelper);
-});
-  console.log('BoneGroup contents:', boneGroup.children); // Debugging line
-}
-
-if(urlParams.get('joint') === 'knee'){
-
-    leftKneeBones.forEach(bone => {
-        const skeletonHelper = new THREE.SkeletonHelper(bone);
-    skeletonHelper.visible = true; // Set to true to see the skeleton
-    scene.add(skeletonHelper);
-    skeletonHelpers.push(skeletonHelper);
-});
-  console.log('BoneGroup contents:', boneGroup.children); // Debugging line
-}
-
-
-
-
-
-if(urlParams.get('joint') === 'elbow'){
- if ( urlParams.get('choice') === 'injury'){
-    leftElbowBones.forEach(bone => {
-        const skeletonHelper = new THREE.SkeletonHelper(bone);
-    skeletonHelper.visible = true; // Set to true to see the skeleton
-    scene.add(skeletonHelper);
-    skeletonHelpers.push(skeletonHelper);
-});    
- }
- else{  
-    rightElbowBones.forEach(bone => {
-    const skeletonHelper = new THREE.SkeletonHelper(bone);
-skeletonHelper.visible = true; // Set to true to see the skeleton
-scene.add(skeletonHelper);
-skeletonHelpers.push(skeletonHelper);});
-}
-    
-  console.log('BoneGroup contents:', boneGroup.children); // Debugging line
-}
-
-}
-});
-
-    scene.add(object);
-  
+                  // Adjust the position of the model
+                
+                scene.add(object);
             }, undefined, (error) => {
                 console.error('An error occurred while loading the FBX model:', error);
             });
@@ -455,139 +249,12 @@ skeletonHelpers.push(skeletonHelper);});
 
             
 //description
-if (urlParams.get('joint') === 'shoulder' && urlParams.get('choice') === 'movement') {
-    const modelName = urlParams.get('modelName');
-
-    switch (modelName) {
-        case 'Abduction':
-            document.getElementById('description-content').innerHTML = "<b>Shoulder Action:</b> Abduction <br> <b>Kinematic Plane:</b> Frontal plane &nbsp; <b>Range of Motion:</b> 0°-180°";
-            break;
-        case 'Adduction':
-            document.getElementById('description-content').innerHTML = "<b>Shoulder Action:</b> Adduction <br> <b>Kinematic Plane:</b> Frontal plane &nbsp; <b>Range of Motion:</b> 0°-30°";
-            break;
-        case 'Flexion':
-            document.getElementById('description-content').innerHTML = "<b>Shoulder Action:</b> Flexion <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°-180°";
-            break;
-        case 'Extension':
-            document.getElementById('description-content').innerHTML = "<b>Shoulder Action:</b> Extension <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°-60°";
-            break;
-        case 'Internal Rotation':
-            document.getElementById('description-content').innerHTML = "<b>Shoulder Action:</b> Internal rotation <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°-90°";
-            break;
-        case 'External Rotation':
-            document.getElementById('description-content').innerHTML = "<b>Shoulder Action:</b> External rotation <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°-90°";
-            break;
-        // case 'Horizontal abduction':
-        //     document.getElementById('description-content').innerHTML = "<b>Shoulder Action:</b> Horizontal abduction <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°-40°";
-        //     break;
-        // case 'Horizontal adduction':
-        //     document.getElementById('description-content').innerHTML = "<b>Shoulder Action:</b> Horizontal adduction <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°-130°";
-        //     break;
-        default:
-            document.getElementById('description-content').innerHTML = "Invalid action selected.";
-            break;
-    }
-}
-if (urlParams.get('joint') === 'elbow' && urlParams.get('choice') === 'movement') {
-    const modelName = urlParams.get('modelName');
-
-    switch (modelName) {
-        case 'Flexion':
-            document.getElementById('description-content').innerHTML = "<b>Elbow Action:</b> Flexion (elbow) <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°-150°";
-            break;
-        case 'Extension':
-            document.getElementById('description-content').innerHTML = "<b>Elbow Action:</b> Extension (elbow) <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 150°-0°";
-            break;
-        case 'Pronation':
-            document.getElementById('description-content').innerHTML = "<b>Elbow Action:</b> Pronation (radioulnar) <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°-80°/90°";
-            break;
-        case 'Supination':
-            document.getElementById('description-content').innerHTML = "<b>Elbow Action:</b> Supination (radioulnar) <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°-80°/90°";
-            break;
-        default:
-            document.getElementById('description-content').innerHTML = "Invalid action selected.";
-            break;
-    }
-}
-
-if (urlParams.get('joint') === 'hip' && urlParams.get('choice') === 'movement') {
-    const modelName = urlParams.get('modelName');
-
-    switch (modelName) {
-        case 'Flexion':
-            document.getElementById('description-content').innerHTML = "<b>Hip Action:</b> Flexion <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°-120°";
-            break;
-        case 'Extension':
-            document.getElementById('description-content').innerHTML = "<b>Hip Action:</b> Extension <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°-30°";
-            break;
-        case 'Abduction':
-            document.getElementById('description-content').innerHTML = "<b>Hip Action:</b> Abduction <br> <b>Kinematic Plane:</b> Frontal plane &nbsp; <b>Range of Motion:</b> 0°-45°";
-            break;
-
-        case 'Adduction':
-            document.getElementById('description-content').innerHTML = "<b>Hip Action:</b> Abduction <br> <b>Kinematic Plane:</b> Frontal plane &nbsp; <b>Range of Motion:</b> 0°-20°";
-            break;
-        case 'Medial Rotation':
-            document.getElementById('description-content').innerHTML = "<b>Hip Action:</b> Internal rotation <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°-35°";
-            break;
-        case 'Lateral Rotation':
-            document.getElementById('description-content').innerHTML = "<b>Hip Action:</b> External rotation <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°-45°";
-            break;
-        default:
-            document.getElementById('description-content').innerHTML = "Invalid action selected.";
-            break;
-    }
-}
-
-if (urlParams.get('joint') === 'knee' && urlParams.get('choice') === 'movement') {
-    const modelName = urlParams.get('modelName');
-
-    switch (modelName) {
-        case 'Flexion':
-            document.getElementById('description-content').innerHTML = "<b>Knee Action:</b> Flexion <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°-150°";
-            break;
-        case 'Extension':
-            document.getElementById('description-content').innerHTML = "<b>Knee Action:</b> Extension <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°-150°";
-            break;
-        case 'External Rotation':
-            document.getElementById('description-content').innerHTML = "<b>Knee Action:</b> External rotation (only when knee is flexed 20°-30° or more) <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°-30°";
-            break;
-        case 'Internal Rotation':
-            document.getElementById('description-content').innerHTML = "<b>Knee Action:</b> Internal rotation (only when knee is flexed 20°-30° or more) <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°-15°";
-            break;
-        default:
-            document.getElementById('description-content').innerHTML = "Invalid action selected.";
-            break;
-    }
-}
-
-if (urlParams.get('joint') === 'ankle' && urlParams.get('choice') === 'movement') {
-    const modelName = urlParams.get('modelName');
-
-    switch (modelName) {
-        case 'Dorsiflexion':
-            document.getElementById('description-content').innerHTML = "<b>Ankle Action:</b> Dorsiflexion <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°-20°";
-            break;
-        case 'Plantarflexion':
-            document.getElementById('description-content').innerHTML = "<b>Ankle Action:</b> Plantar flexion <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°-50°";
-            break;
-        case 'Inversion':
-            document.getElementById('description-content').innerHTML = "<b>Ankle Action:</b> Inversion <br> <b>Kinematic Plane:</b> Frontal plane &nbsp; <b>Range of Motion:</b> 0°-25°";
-            break;
-        case 'Eversion':
-            document.getElementById('description-content').innerHTML = "<b>Ankle Action:</b> Eversion <br> <b>Kinematic Plane:</b> Frontal plane &nbsp; <b>Range of Motion:</b> 0°-12°";
-            break;
-        case 'Pronation':
-            document.getElementById('description-content').innerHTML = "<b>Ankle Action:</b> Pronation <br> <b>Kinematic Plane:</b> (Cannot be measured accurately) Eversion + dorsiflexion";
-            break;
-        case 'Supination':
-            document.getElementById('description-content').innerHTML = "<b>Ankle Action:</b> Supination <br> <b>Kinematic Plane:</b> (Cannot be measured accurately) Inversion + plantar flexion";
-            break;
-        default:
-            document.getElementById('description-content').innerHTML = "Invalid action selected.";
-            break;
-    }
-}
+            if (urlParams.get('joint') === 'ankle' && urlParams.get('choice') === 'injury') {
+                if (urlParams.get('modelName') === 'Inversion') {
+                    document.getElementById('description-content').innerHTML = "This is the description for"+urlParams.get('joint') + "ankle injury inversion.";
+                }
+                // Add more conditions for other model names if needed
+            }
 
 
 
@@ -854,21 +521,10 @@ timeline.addEventListener('input', function () {
     requestAnimationFrame(animate);
 
     const delta = clock.getDelta();
-    leftUpLegBones.forEach((bone) => {
-        const label = scene.getObjectByName('Left Up Leg');
-        if (label) label.position.copy(bone.getWorldPosition(new THREE.Vector3()));
-    });
-    
-    rightUpLegBones.forEach((bone) => {
-        const label = scene.getObjectByName('Right Up Leg');
-        if (label) label.position.copy(bone.getWorldPosition(new THREE.Vector3()));
-    });
     if (mixer && mixer._actions.length > 0) {
         const action = mixer._actions[0];
         if (isPlaying) {
             mixer.update(delta * animationSpeed);
-
-           
 
             // Only update the UI if the current time has changed significantly
             const currentTime = action.time;
@@ -896,24 +552,6 @@ timeline.addEventListener('input', function () {
            
 }
 
-
-function createJointLabel(name, position) {
-    const canvas = document.createElement('canvas');
-    const context = canvas.getContext('2d');
-    context.font = '24px Arial';
-    context.fillStyle = 'black';
-    context.fillText(name, 0, 24); // Adjust positioning as needed
-
-    const texture = new THREE.Texture(canvas);
-    texture.needsUpdate = true;
-
-    const spriteMaterial = new THREE.SpriteMaterial({ map: texture });
-    const sprite = new THREE.Sprite(spriteMaterial);
-    sprite.position.copy(position);
-    sprite.scale.set(0.1, 0.1, 0.1); // Adjust size as needed
-
-    return sprite;
-}
 function checkCameraDistance() {
     // Create a bounding box for the object
     const box = new THREE.Box3().setFromObject(scene.children[0]); // Assuming the first child is your model
@@ -1017,10 +655,6 @@ function checkCameraDistance() {
                     controlsContent.style.display = "none"; // Hide content
                 }
             });
-
-           
-        
-          
 
 
 

@@ -10,8 +10,6 @@
    
   }
 
-
-  
     #canvas-container {
         display: flex; /* Use flexbox for alignment */
         justify-content: center; /* Center horizontally */
@@ -41,7 +39,6 @@
         border: 1px solid #ccc; /* Button border */
         border-radius: 5px; /* Rounded corners */
         transition: background-color 0.3s; /* Smooth transition for hover */
-       
     }
     
     .description-button:hover {

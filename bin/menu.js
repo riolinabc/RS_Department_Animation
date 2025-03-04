@@ -48,8 +48,8 @@
                     { name: "Adduction", file: "knee/demo_adduction.fbx" },
                     { name: "Extension", file: "knee/demo_extension.fbx" },
                     { name: "Flexion", file: "knee/demo_flexion.fbx" },
-                    { name: "External Rotation", file: "knee/demo_lateralrotation.fbx" },
-                    { name: "Internal Rotation", file: "knee/demo_medialrotation.fbx" }
+                    { name: "Lateral Rotation", file: "knee/demo_lateralrotation.fbx" },
+                    { name: "Medial Rotation", file: "knee/demo_medialrotation.fbx" }
                 ],
                 injuries: [
                     { name: "ACL Injury", file: "knee/acl_2.fbx" }
