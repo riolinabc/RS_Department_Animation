@@ -527,10 +527,10 @@ if (urlParams.get('joint') === 'hip' && urlParams.get('choice') === 'movement') 
         case 'Adduction':
             document.getElementById('description-content').innerHTML = "<b>Hip Action:</b> Abduction <br> <b>Kinematic Plane:</b> Frontal plane &nbsp; <b>Range of Motion:</b> 0°- 20°";
             break;
-        case ' Rotation':
+        case 'Internal Rotation':
             document.getElementById('description-content').innerHTML = "<b>Hip Action:</b> Internal rotation <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°- 35°";
             break;
-        case 'Lateral Rotation':
+        case 'External Rotation':
             document.getElementById('description-content').innerHTML = "<b>Hip Action:</b> External rotation <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°- 45°";
             break;
         default:
