@@ -83,8 +83,15 @@ scene.add(boneGroup);
             initialCameraPosition = camera.position.clone();
             initialCameraRotation = camera.rotation.clone();
 
-            renderer = new THREE.WebGLRenderer({ antialias: true });
-
+            // renderer = new THREE.WebGLRenderer({ antialias: true });
+            // renderer.setPixelRatio( window.devicePixelRatio );
+            // Replace your current renderer with:
+            renderer = new THREE.WebGLRenderer({
+                antialias: true,
+                powerPreference: "high-performance",
+                logarithmicDepthBuffer: true  // Helps with depth precision
+            });
+            renderer.setPixelRatio(window.devicePixelRatio * 1.5); // Increase pixel ratio
 
             //neww 
 
