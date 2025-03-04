@@ -562,6 +562,12 @@ if (urlParams.get('joint') === 'knee' && urlParams.get('choice') === 'movement')
         case 'Internal Rotation':
             document.getElementById('description-content').innerHTML = "<b>Knee Action:</b> Internal rotation (only when knee is flexed 20°- 30° or more) <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°- 15°";
             break;
+        case 'Abduction':
+            document.getElementById('description-content').innerHTML = "<b>Knee Action:</b> Abduction <br> <b>Kinematic Plane:</b> Frontal plane &nbsp; <b>Range of Motion:</b> 0°- 20°";
+            break;
+        case 'Adduction':
+            document.getElementById('description-content').innerHTML = "<b>Knee Action:</b> Adduction <br> <b>Kinematic Plane:</b> Frontal plane &nbsp; <b>Range of Motion:</b> 0°- 10°";
+            break;
         default:
             document.getElementById('description-content').innerHTML = "Invalid action selected.";
             break;
@@ -589,6 +595,12 @@ if (urlParams.get('joint') === 'ankle' && urlParams.get('choice') === 'movement'
             break;
         case 'Supination':
             document.getElementById('description-content').innerHTML = "<b>Ankle Action:</b> Supination <br> <b>Kinematic Plane:</b> (Cannot be measured accurately) Inversion + plantar flexion";
+            break;
+        case 'Abduction':
+            document.getElementById('description-content').innerHTML = "<b>Ankle Action:</b> Abduction <br> <b>Kinematic Plane:</b> Tranverse plane &nbsp; <b>Range of Motion:</b> 0°- 10°";
+            break;
+        case 'Adduction':
+            document.getElementById('description-content').innerHTML = "<b>Ankle Action:</b> Adduction <br> <b>Kinematic Plane:</b> Tranverse plane &nbsp; <b>Range of Motion:</b> 0°- 10°";
             break;
         default:
             document.getElementById('description-content').innerHTML = "Invalid action selected.";
