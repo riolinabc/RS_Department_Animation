@@ -460,28 +460,28 @@ if (urlParams.get('joint') === 'shoulder' && urlParams.get('choice') === 'moveme
 
     switch (modelName) {
         case 'Abduction':
-            document.getElementById('description-content').innerHTML = "<b>Shoulder Action:</b> Abduction <br> <b>Kinematic Plane:</b> Frontal plane &nbsp; <b>Range of Motion:</b> 0°-180°";
+            document.getElementById('description-content').innerHTML = "<b>Shoulder Action:</b> Abduction <br> <b>Kinematic Plane:</b> Frontal plane &nbsp; <b>Range of Motion:</b> 0°- 180°";
             break;
         case 'Adduction':
-            document.getElementById('description-content').innerHTML = "<b>Shoulder Action:</b> Adduction <br> <b>Kinematic Plane:</b> Frontal plane &nbsp; <b>Range of Motion:</b> 0°-30°";
+            document.getElementById('description-content').innerHTML = "<b>Shoulder Action:</b> Adduction <br> <b>Kinematic Plane:</b> Frontal plane &nbsp; <b>Range of Motion:</b> 0°- 30°";
             break;
         case 'Flexion':
-            document.getElementById('description-content').innerHTML = "<b>Shoulder Action:</b> Flexion <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°-180°";
+            document.getElementById('description-content').innerHTML = "<b>Shoulder Action:</b> Flexion <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°- 180°";
             break;
         case 'Extension':
-            document.getElementById('description-content').innerHTML = "<b>Shoulder Action:</b> Extension <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°-60°";
+            document.getElementById('description-content').innerHTML = "<b>Shoulder Action:</b> Extension <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°- 60°";
             break;
         case 'Internal Rotation':
-            document.getElementById('description-content').innerHTML = "<b>Shoulder Action:</b> Internal rotation <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°-90°";
+            document.getElementById('description-content').innerHTML = "<b>Shoulder Action:</b> Internal rotation <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°- 90°";
             break;
         case 'External Rotation':
-            document.getElementById('description-content').innerHTML = "<b>Shoulder Action:</b> External rotation <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°-90°";
+            document.getElementById('description-content').innerHTML = "<b>Shoulder Action:</b> External rotation <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°- 90°";
             break;
         // case 'Horizontal abduction':
-        //     document.getElementById('description-content').innerHTML = "<b>Shoulder Action:</b> Horizontal abduction <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°-40°";
+        //     document.getElementById('description-content').innerHTML = "<b>Shoulder Action:</b> Horizontal abduction <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°- 40°";
         //     break;
         // case 'Horizontal adduction':
-        //     document.getElementById('description-content').innerHTML = "<b>Shoulder Action:</b> Horizontal adduction <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°-130°";
+        //     document.getElementById('description-content').innerHTML = "<b>Shoulder Action:</b> Horizontal adduction <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°- 130°";
         //     break;
         default:
             document.getElementById('description-content').innerHTML = "Invalid action selected.";
@@ -493,16 +493,16 @@ if (urlParams.get('joint') === 'elbow' && urlParams.get('choice') === 'movement'
 
     switch (modelName) {
         case 'Flexion':
-            document.getElementById('description-content').innerHTML = "<b>Elbow Action:</b> Flexion (elbow) <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°-150°";
+            document.getElementById('description-content').innerHTML = "<b>Elbow Action:</b> Flexion (elbow) <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°- 150°";
             break;
         case 'Extension':
-            document.getElementById('description-content').innerHTML = "<b>Elbow Action:</b> Extension (elbow) <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 150°-0°";
+            document.getElementById('description-content').innerHTML = "<b>Elbow Action:</b> Extension (elbow) <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 150°- 0°";
             break;
         case 'Pronation':
-            document.getElementById('description-content').innerHTML = "<b>Elbow Action:</b> Pronation (radioulnar) <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°-80°/90°";
+            document.getElementById('description-content').innerHTML = "<b>Elbow Action:</b> Pronation (radioulnar) <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°- 80°/90°";
             break;
         case 'Supination':
-            document.getElementById('description-content').innerHTML = "<b>Elbow Action:</b> Supination (radioulnar) <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°-80°/90°";
+            document.getElementById('description-content').innerHTML = "<b>Elbow Action:</b> Supination (radioulnar) <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°- 80°/90°";
             break;
         default:
             document.getElementById('description-content').innerHTML = "Invalid action selected.";
@@ -515,23 +515,23 @@ if (urlParams.get('joint') === 'hip' && urlParams.get('choice') === 'movement') 
 
     switch (modelName) {
         case 'Flexion':
-            document.getElementById('description-content').innerHTML = "<b>Hip Action:</b> Flexion <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°-120°";
+            document.getElementById('description-content').innerHTML = "<b>Hip Action:</b> Flexion <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°- 120°";
             break;
         case 'Extension':
-            document.getElementById('description-content').innerHTML = "<b>Hip Action:</b> Extension <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°-30°";
+            document.getElementById('description-content').innerHTML = "<b>Hip Action:</b> Extension <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°- 30°";
             break;
         case 'Abduction':
-            document.getElementById('description-content').innerHTML = "<b>Hip Action:</b> Abduction <br> <b>Kinematic Plane:</b> Frontal plane &nbsp; <b>Range of Motion:</b> 0°-45°";
+            document.getElementById('description-content').innerHTML = "<b>Hip Action:</b> Abduction <br> <b>Kinematic Plane:</b> Frontal plane &nbsp; <b>Range of Motion:</b> 0°- 45°";
             break;
 
         case 'Adduction':
-            document.getElementById('description-content').innerHTML = "<b>Hip Action:</b> Abduction <br> <b>Kinematic Plane:</b> Frontal plane &nbsp; <b>Range of Motion:</b> 0°-20°";
+            document.getElementById('description-content').innerHTML = "<b>Hip Action:</b> Abduction <br> <b>Kinematic Plane:</b> Frontal plane &nbsp; <b>Range of Motion:</b> 0°- 20°";
             break;
-        case 'Medial Rotation':
-            document.getElementById('description-content').innerHTML = "<b>Hip Action:</b> Internal rotation <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°-35°";
+        case ' Rotation':
+            document.getElementById('description-content').innerHTML = "<b>Hip Action:</b> Internal rotation <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°- 35°";
             break;
         case 'Lateral Rotation':
-            document.getElementById('description-content').innerHTML = "<b>Hip Action:</b> External rotation <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°-45°";
+            document.getElementById('description-content').innerHTML = "<b>Hip Action:</b> External rotation <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°- 45°";
             break;
         default:
             document.getElementById('description-content').innerHTML = "Invalid action selected.";
@@ -544,16 +544,16 @@ if (urlParams.get('joint') === 'knee' && urlParams.get('choice') === 'movement')
 
     switch (modelName) {
         case 'Flexion':
-            document.getElementById('description-content').innerHTML = "<b>Knee Action:</b> Flexion <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°-150°";
+            document.getElementById('description-content').innerHTML = "<b>Knee Action:</b> Flexion <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°- 150°";
             break;
         case 'Extension':
-            document.getElementById('description-content').innerHTML = "<b>Knee Action:</b> Extension <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°-150°";
+            document.getElementById('description-content').innerHTML = "<b>Knee Action:</b> Extension <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°- 150°";
             break;
         case 'External Rotation':
-            document.getElementById('description-content').innerHTML = "<b>Knee Action:</b> External rotation (only when knee is flexed 20°-30° or more) <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°-30°";
+            document.getElementById('description-content').innerHTML = "<b>Knee Action:</b> External rotation (only when knee is flexed 20°- 30° or more) <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°- 30°";
             break;
         case 'Internal Rotation':
-            document.getElementById('description-content').innerHTML = "<b>Knee Action:</b> Internal rotation (only when knee is flexed 20°-30° or more) <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°-15°";
+            document.getElementById('description-content').innerHTML = "<b>Knee Action:</b> Internal rotation (only when knee is flexed 20°- 30° or more) <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°- 15°";
             break;
         default:
             document.getElementById('description-content').innerHTML = "Invalid action selected.";
@@ -566,16 +566,16 @@ if (urlParams.get('joint') === 'ankle' && urlParams.get('choice') === 'movement'
 
     switch (modelName) {
         case 'Dorsiflexion':
-            document.getElementById('description-content').innerHTML = "<b>Ankle Action:</b> Dorsiflexion <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°-20°";
+            document.getElementById('description-content').innerHTML = "<b>Ankle Action:</b> Dorsiflexion <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°- 20°";
             break;
         case 'Plantarflexion':
-            document.getElementById('description-content').innerHTML = "<b>Ankle Action:</b> Plantar flexion <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°-50°";
+            document.getElementById('description-content').innerHTML = "<b>Ankle Action:</b> Plantar flexion <br> <b>Kinematic Plane:</b> Sagittal plane &nbsp; <b>Range of Motion:</b> 0°- 50°";
             break;
         case 'Inversion':
-            document.getElementById('description-content').innerHTML = "<b>Ankle Action:</b> Inversion <br> <b>Kinematic Plane:</b> Frontal plane &nbsp; <b>Range of Motion:</b> 0°-25°";
+            document.getElementById('description-content').innerHTML = "<b>Ankle Action:</b> Inversion <br> <b>Kinematic Plane:</b> Frontal plane &nbsp; <b>Range of Motion:</b> 0°- 25°";
             break;
         case 'Eversion':
-            document.getElementById('description-content').innerHTML = "<b>Ankle Action:</b> Eversion <br> <b>Kinematic Plane:</b> Frontal plane &nbsp; <b>Range of Motion:</b> 0°-12°";
+            document.getElementById('description-content').innerHTML = "<b>Ankle Action:</b> Eversion <br> <b>Kinematic Plane:</b> Frontal plane &nbsp; <b>Range of Motion:</b> 0°- 12°";
             break;
         case 'Pronation':
             document.getElementById('description-content').innerHTML = "<b>Ankle Action:</b> Pronation <br> <b>Kinematic Plane:</b> (Cannot be measured accurately) Eversion + dorsiflexion";

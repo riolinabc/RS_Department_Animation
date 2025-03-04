@@ -36,8 +36,8 @@
                     { name: "Adduction", file: "hip/hip_adduction.fbx" },
                     { name: "Extension", file: "hip/hip_extension.fbx" },
                     { name: "Flexion", file: "hip/hip_flexion.fbx" },
-                    { name: "Lateral Rotation", file: "hip/hip_lateral_rotation.fbx" },
-                    { name: "Medial Rotation", file: "hip/hip_medial_rotation.fbx" }
+                    { name: "External Rotation", file: "hip/hip_lateral_rotation.fbx" },
+                    { name: "Internal Rotation", file: "hip/hip_medial_rotation.fbx" }
                 ]
                
 
