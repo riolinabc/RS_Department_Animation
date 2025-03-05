@@ -563,10 +563,10 @@ if (urlParams.get('joint') === 'knee' && urlParams.get('choice') === 'movement')
             document.getElementById('description-content').innerHTML = "<b>Knee Action:</b> Internal rotation (only when knee is flexed 20°- 30° or more) <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°- 15°";
             break;
         case 'Abduction':
-            document.getElementById('description-content').innerHTML = "<b>Knee Action:</b> Abduction <br> <b>Kinematic Plane:</b> Frontal plane &nbsp; <b>Range of Motion:</b> Not Valid";
+            document.getElementById('description-content').innerHTML = "<b>Knee Action:</b> Abduction <br> <b>Kinematic Plane:</b> Not Valid &nbsp; <b>Range of Motion:</b> Not Valid";
             break;
         case 'Adduction':
-            document.getElementById('description-content').innerHTML = "<b>Knee Action:</b> Adduction <br> <b>Kinematic Plane:</b> Frontal plane &nbsp; <b>Range of Motion:</b> Not Valid";
+            document.getElementById('description-content').innerHTML = "<b>Knee Action:</b> Adduction <br> <b>Kinematic Plane:</b> Not Valid &nbsp; <b>Range of Motion:</b> Not Valid";
             break;
         default:
             document.getElementById('description-content').innerHTML = "Invalid action selected.";
