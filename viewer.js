@@ -597,7 +597,7 @@ if (urlParams.get('joint') === 'ankle' && urlParams.get('choice') === 'movement'
             document.getElementById('description-content').innerHTML = "<b>Ankle Action:</b> Supination <br> <b>Kinematic Plane:</b> (Cannot be measured accurately) Inversion + Plantarflexion + Adduction";
             break;
         case 'Abduction':
-            document.getElementById('description-content').innerHTML = "<b>Ankle Action:</b> Abduction <br> <b>Kinematic Plane:</b> Horizontal plane plane &nbsp; <b>Range of Motion:</b> 0°- 10°/15°";
+            document.getElementById('description-content').innerHTML = "<b>Ankle Action:</b> Abduction <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°- 10°/15°";
             break;
         case 'Adduction':
             document.getElementById('description-content').innerHTML = "<b>Ankle Action:</b> Adduction <br> <b>Kinematic Plane:</b> Horizontal plane &nbsp; <b>Range of Motion:</b> 0°- 20°/30°";
