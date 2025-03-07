@@ -460,7 +460,48 @@ skeletonHelpers.push(skeletonHelper);});
             checkCameraDistance();
 
 
+   
             
+            if (urlParams.get('joint') === 'shoulder' && urlParams.get('choice') === 'injury') {
+                const modelName = urlParams.get('modelName');
+            
+                switch (modelName) {
+                    case 'Posterior Dislocation':
+                        document.getElementById('description-content').innerHTML = 
+                        "<b>Shoulder posterior dislocation:</b><br>The head of the humerus is displaced backward, usually due to axial force while adduction combined with internal rotation or from a blunt blow to the anterior shoulder. Because of the shoulder joint’s shallow structure and high mobility, it is prone to instability and dislocation (Kammel et al., 2021). <br> <br><b>Reference: </b><br> Kammel, K. R., El Bitar, Y., & Leber, E. H. (2021). Posterior Shoulder Dislocations. PubMed; StatPearls Publishing. https://www.ncbi.nlm.nih.gov/books/NBK441919/";
+                        break;
+                    
+                }
+            }
+            
+
+            if (urlParams.get('joint') === 'elbow' && urlParams.get('choice') === 'injury') {
+                const modelName = urlParams.get('modelName');
+            
+                switch (modelName) {
+                    case 'Elbow Fully Extended':
+                        document.getElementById('description-content').innerHTML = 
+                        "<b>Elbow outstretched hand:</b><br>Possible injuries when the arm is outstretched <br> <b>(1) Elbow dislocation: </b> Traditionally, the mechanism of injury was believed to be a hyperextension moment. A fall on the outstretched hand is a common event. The elbow experiences an axial compressive force during flexion as the body approaches the ground. The body rotates internally, with the forearm rotating externally to the trunk, resulting in a supination moment at the elbow. At that point, the mechanical axis of the extremity is medial to the elbow resulting in a valgus moment. A perched dislocation results if the force of the fall is dissipated at this moment. If the disruptive force continues, forearm rotation occurs, resulting in the tearing of the capsule and finally a complete dislocation (Kuhn & Ross, 2008). <b><br>(2) Olecranon fracture: </b>Olecranon fractures typically result from either a fall on an outstretched arm or a direct trauma to the olecranon (Midtgaard et al., 2020). Olecranon’s subcutaneous location leaves it vulnerable to injury from a direct blow (Sullivan et al., 2021). <br><b>(3) Radial head fracture:</b>In most cases, it is caused by a fall on outstretched arm with pronated forearm and slight flexion at the elbow, impacting the radial head against the capitellum and transmitting the forces axially (Al-Tawil & Arya, 2021).<br><br><b>Reference:</b><br>Al-Tawil, K., & Arya, A. (2021). Radial head fractures. Journal of Clinical Orthopaedics and Trauma, 20, 101497. https://doi.org/10.1016/j.jcot.2021.101497<br>Kuhn, M. A., & Ross, G. (2008). Acute elbow dislocations. The Orthopedic Clinics of North America, 39(2), 155–161, v. https://doi.org/10.1016/j.ocl.2007.12.004<br>Midtgaard, K. S., Ruzbarsky, J. J., Hackett, T. R., & Viola, R. W. (2020). Elbow Fractures. Clinics in Sports Medicine, 39(3), 623–636. https://doi.org/10.1016/j.csm.2020.03.002<br>Sullivan, C. W., Herron, T., & Zara Hayat. (2021, August 25). Olecranon Fracture. Nih.gov; StatPearls Publishing. https://www.ncbi.nlm.nih.gov/books/NBK537295/ ";
+                        break;
+                    
+                }
+            }
+
+
+            if (urlParams.get('joint') === 'knee' && urlParams.get('choice') === 'injury') {
+                const modelName = urlParams.get('modelName');
+            
+                switch (modelName) {
+                    case 'ACL Injury':
+                        document.getElementById('description-content').innerHTML = 
+                        "<b>Knee Anterior Cruciate Ligament (ACL) injury:</b><br>Most ACL tears occur in athletes by non-contact mechanisms, non-contact pivoting injury where the tibia translates anteriorly while the knee is slightly flexed and in valgus. A direct hit to the lateral knee has also been encountered as an injury mechanism (Evans et al., 2023). <br><br> <b>Reference: </b><br>Evans, J., Nielson, J. l, & Mabrouk, A. (2023, November 17). Anterior cruciate ligament (ACL) knee injuries. Nih.gov; StatPearls Publishing. https://www.ncbi.nlm.nih.gov/books/NBK499848/ ";
+                        break;
+                    
+                }
+            }
+
+
+
 //description
 if (urlParams.get('joint') === 'shoulder' && urlParams.get('choice') === 'movement') {
     const modelName = urlParams.get('modelName');
